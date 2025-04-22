@@ -1,0 +1,63 @@
+import logging
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import allure
+import pytest
+
+
+class BFV1Test:
+    def __init__(self, driver, urls, test_link=None):
+        self.driver = driver
+        self.urls = urls
+        self.test_link = test_link
+        self.retries = 0
+        self.max_retries = 5
+
+    @allure.feature("BFV1 Test Suite")
+    @allure.story("Run BFV1 Test")
+    @allure.severity(allure.severity_level.CRITICAL)
+    def run(self):
+        """Run the BFV1 test with retry logic."""
+        test_success = False
+
+        for attempt in range(self.max_retries):
+                try:
+                    self.perform_bfv1_test()
+
+                    if self.test_link:
+                        self.navigate_to_salesforce()
+
+                    test_success = True
+                    break
+                except Exception as e:
+                    logging.error(f"❌ Error during BFV1 test: {e}")
+                    self.retries += 1
+                    allure.attach(str(e), name="Error Details", attachment_type=allure.attachment_type.TEXT)
+
+        if not test_success:
+            pytest.fail(f"❌ BFV1 Test failed after {self.max_retries} attempts.")
+
+    @allure.step("Perform BFV1 Test Logic")
+    def perform_bfv1_test(self):
+        """Perform the main BFV1 test logic."""
+        # Navigate to the product page
+        with allure.step(f"🌍 Navigated to: {self.urls['PRODUCT_PAGE']}"):
+            self.driver.get(self.urls['PRODUCT_PAGE'])
+            logging.info(f"🌍 Navigated to: {self.urls['PRODUCT_PAGE']}")
+            time.sleep(3)
+        
+        # Navigate back to the home page  
+        with allure.step(f"🌍 Navigated back to: {self.urls['HOME_PAGE']}"):
+            self.driver.get(self.urls['HOME_PAGE'])
+            logging.info(f"🌍 Navigated back to: {self.urls['HOME_PAGE']}")
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+            
+    @allure.step("Navigate to Salesforce URL")
+    def navigate_to_salesforce(self):
+        """Navigate to the Salesforce URL if test_link is provided."""
+        salesforce_url = self.urls['HOME_PAGE'] + self.test_link
+        self.driver.get(salesforce_url)
+        logging.info(f"🌍 Navigated to Salesforce URL: {salesforce_url}")
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
