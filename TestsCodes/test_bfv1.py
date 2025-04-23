@@ -6,7 +6,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 from App.CreateDriver import driver 
+import uuid
 
+# Generar un UUID consistente para el test usando el nombre del test
+def generate_test_uuid(test_name):
+    return str(uuid.uuid5(uuid.NAMESPACE_DNS, test_name))
 
 class BFV1Test:
     def __init__(self, driver, urls, market_code=None, model_code=None, test_link=None):
@@ -21,6 +25,7 @@ class BFV1Test:
     @allure.feature("BFV1 Test Suite")
     @allure.story("Run BFV1 Test")
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.id(generate_test_uuid("run_bfv1_test"))  # Asignar un UUID consistente al test principal
     def run(self):
         """Run the BFV1 test with retry logic."""
         test_success = False
@@ -43,6 +48,7 @@ class BFV1Test:
             raise Exception(f"❌ BFV1 Test failed after {self.max_retries} attempts.")
 
     @allure.step("Perform BFV1 Test Logic")
+    @allure.id(generate_test_uuid("perform_bfv1_test"))  # UUID consistente para este paso
     def perform_bfv1_test(self):
         """Perform the main BFV1 test logic."""
         # Navigate to the product page
@@ -58,6 +64,7 @@ class BFV1Test:
             WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
 
     @allure.step("Navigate to Salesforce URL")
+    @allure.id(generate_test_uuid("navigate_to_salesforce"))  # UUID consistente para este paso
     def navigate_to_salesforce(self):
         """Navigate to the Salesforce URL if test_link is provided."""
         salesforce_url = self.urls['HOME_PAGE'] + self.test_link
