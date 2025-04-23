@@ -7,7 +7,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 import allure
 import pytest
 from App.CreateDriver import driver 
+import uuid
 
+# Generar un UUID consistente para el test usando el nombre del test
+def generate_test_uuid(test_name):
+    return str(uuid.uuid5(uuid.NAMESPACE_DNS, test_name))
 
 class BFV2Test:
     def __init__(self, driver, urls, test_link=None):
@@ -20,6 +24,7 @@ class BFV2Test:
     @allure.feature("BFV2 Test Suite")
     @allure.story("Run BFV2 Test")
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.id(generate_test_uuid("run_bfv2_test"))  # Assign a consistent UUID to the main test
     def run(self):
         test_success = False  # Flag to indicate if the test was successful
         
@@ -48,6 +53,7 @@ class BFV2Test:
         return shadow_root        
 
     @allure.step("Perform BFV2 Test Logic")
+    @allure.id(generate_test_uuid("perform_bfv2_test"))  # UUID consistent for this step
     def perform_bfv2_test(self):
         """Perform the main BFV2 test logic."""
         # Navigate to the product page
@@ -85,6 +91,7 @@ class BFV2Test:
             WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
             
     @allure.step("Navigate to Salesforce URL")
+    @allure.id(generate_test_uuid("navigate_to_salesforce"))  # UUID consistent for this step
     def navigate_to_salesforce(self):
         """Navigate to the Salesforce URL if test_link is provided."""
         salesforce_url = self.urls['HOME_PAGE'] + self.test_link

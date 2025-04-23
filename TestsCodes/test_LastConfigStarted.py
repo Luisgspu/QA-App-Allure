@@ -5,7 +5,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import allure
-
+import uuid
+# Generar un UUID consistente para el test usando el nombre del test
+def generate_test_uuid(test_name):
+    return str(uuid.uuid5(uuid.NAMESPACE_DNS, test_name))
 
 class LCStartedTest:
     def __init__(self, driver, urls, test_link=None):
@@ -18,6 +21,8 @@ class LCStartedTest:
     @allure.feature("Last Configuration Started Test Suite")
     @allure.story("Run Last Configuration Started Test")
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.id(generate_test_uuid("run_LCStarted_test"))  # Assign a consistent UUID to the main test
+    
     def run(self):
         test_success = False  # Flag to indicate if the test was successful
         
@@ -46,6 +51,7 @@ class LCStartedTest:
         return shadow_root        
 
     @allure.step("Perform Last Configuration Started Test Logic")
+    @allure.id(generate_test_uuid("perform_LCStarted_test"))  # UUID consistent for this step
     def perform_LCStarted_test(self):
         """Perform the main Last Configuration Started test logic."""
        
@@ -78,6 +84,7 @@ class LCStartedTest:
             WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
             
     @allure.step("Navigate to Salesforce URL")
+    @allure.id(generate_test_uuid("navigate_to_salesforce"))  # UUID consistent for this step
     def navigate_to_salesforce(self):
         """Navigate to the Salesforce URL if test_link is provided."""
         salesforce_url = self.urls['HOME_PAGE'] + self.test_link
