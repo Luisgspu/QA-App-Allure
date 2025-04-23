@@ -1,10 +1,9 @@
-name: Main Event Workflow — DEV Environment 
+name: Main Event Workflow — DEV Environment
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
-  
 
 env:
   TEST_EXECUTION_ENV: dev
@@ -19,17 +18,20 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Install Poetry, install requirements, and activate venv.
+      - name: Install Poetry
         run: |
-          echo "The job was triggered by: $GITHUB_ACTOR"
-          python3 core/helpers/install_poetry.py
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
           poetry --version
+
+      - name: Install dependencies
+        run: |
           poetry install --no-root
 
       - name: Set Python path
         run: echo "PYTHONPATH=$(pwd)/my_app" >> $GITHUB_ENV    
 
-      - name: Generate .config.yaml with data.
+      - name: Generate .config.yaml with data
         env:
           DEV_SUPERUSER_EMAIL: ${{ vars.DEV_SUPERUSER_EMAIL }}
           DEV_SUPERUSER_PASSWORD: ${{ vars.DEV_SUPERUSER_PASSWORD }}

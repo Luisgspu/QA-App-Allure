@@ -72,7 +72,7 @@ jobs:
         env:
           EMAIL_SENDER: ${{secrets.MAIL_USERNAME}}
           EMAIL_PASSWORD: ${{secrets.MAIL_PASSWORD}}
-          EMAIL_RECEIVERS: zokirovrustam202@gmail.com,nnarziev@gmail.com
+          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
           ENV: DEV
           RUN_NUMBER: ${{ steps.version.outputs.run_number }}
           EVENT_NAME: ${{ steps.version.outputs.event_name }}
