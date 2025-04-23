@@ -69,13 +69,16 @@ jobs:
           mkdir -p allure-report/history
           cp -r gh-pages/history allure-report/history || echo "No history"
 
+      - name: Set report directory env var
+        run: echo "ALLURE_REPORT_DIR=$(ls -td allure-report-* | head -1)" >> $GITHUB_ENV
+
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report
+          publish_dir: ${{ env.ALLURE_REPORT_DIR }}
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
