@@ -2,7 +2,9 @@ name: Main Event Workflow — DEV Environment
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - parallel-testing
   workflow_dispatch:
 
 env:
