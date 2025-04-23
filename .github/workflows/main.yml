@@ -34,20 +34,18 @@ jobs:
         run: |
           poetry run pytest QAAppAllure.py --alluredir=allure-results
 
-      - name: Generate Allure Report with Timestamp
+      - name: Generate Allure Report (static folder)
         run: |
           npm install -g allure-commandline --save-dev
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          allure generate allure-results -o allure-report-$TIMESTAMP --clean
-          echo "Allure report generated: allure-report-$TIMESTAMP"
+          allure generate allure-results -o allure-report --clean
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report-${{ github.run_number }}
-          path: allure-report-*
+          name: allure-report
+          path: allure-report
 
-      - name: Get Allure history.
+      - name: Get Allure history
         uses: actions/checkout@v2
         if: always()
         continue-on-error: true
@@ -61,7 +59,6 @@ jobs:
         with:
           name: allure-results
           path: allure-results
-    
 
       - name: Copy Allure history
         if: always()
@@ -69,27 +66,20 @@ jobs:
           mkdir -p allure-report/history
           cp -r gh-pages/history allure-report/history || echo "No history"
 
-      - name: Set report directory env var
-        run: echo "ALLURE_REPORT_DIR=$(ls -td allure-report-* | head -1)" >> $GITHUB_ENV
-
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ${{ env.ALLURE_REPORT_DIR }}
+          publish_dir: allure-report
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
 
-      - name: Set current date as env variable.
+      - name: Set current date as env variable
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
           echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
           echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
           echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
-        
-
-
-    
