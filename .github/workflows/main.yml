@@ -1,4 +1,4 @@
-name: On Push Event Workflow — DEV Environment — API Regression
+name: Main Event Workflow — DEV Environment 
 
 on:
   push:
@@ -25,6 +25,9 @@ jobs:
           python3 core/helpers/install_poetry.py
           poetry --version
           poetry install --no-root
+
+      - name: Set Python path
+        run: echo "PYTHONPATH=$(pwd)/my_app" >> $GITHUB_ENV    
 
       - name: Generate .config.yaml with data.
         env:
