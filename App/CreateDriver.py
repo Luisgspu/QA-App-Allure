@@ -1,5 +1,6 @@
 from selenium import webdriver
 import logging
+import pytest
 
 
 def build_chrome_options():
@@ -37,3 +38,10 @@ def restart_driver(old_driver):
         logging.warning(f"⚠️ Failed to quit the old browser: {e}")
         options = build_chrome_options()  # fallback en caso de fallo
     return create_driver(options)
+
+@pytest.fixture
+def driver():
+    """Pytest fixture to initialize and clean up the WebDriver."""
+    options = build_chrome_options()
+    driver = create_driver(options)
+    yield driver

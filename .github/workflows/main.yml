@@ -32,7 +32,18 @@ jobs:
 
       - name: Run tests scripts directly
         run: |
-          poetry run pytest -s -v --reruns 3 --alluredir=allure-results
+          poetry run pytest QAAppAllure.py --alluredir=allure-results
+
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure generate allure-results -o allure-report --clean
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
 
       - name: Generate .config.yaml with data
         env:
