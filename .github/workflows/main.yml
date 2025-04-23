@@ -34,16 +34,18 @@ jobs:
         run: |
           poetry run pytest QAAppAllure.py --alluredir=allure-results
 
-      - name: Generate Allure Report
+      - name: Generate Allure Report with Timestamp
         run: |
           npm install -g allure-commandline --save-dev
-          allure generate allure-results -o allure-report --clean
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          allure generate allure-results -o allure-report-$TIMESTAMP --clean
+          echo "Allure report generated: allure-report-$TIMESTAMP"
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: allure-report
+          name: allure-report-${{ github.run_number }}
+          path: allure-report-*
 
       - name: Get Allure history.
         uses: actions/checkout@v2
