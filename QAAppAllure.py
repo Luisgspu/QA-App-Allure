@@ -9,6 +9,7 @@ import pytest
 import allure
 import sys
 import os
+import hashlib
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -265,6 +266,12 @@ def test_run(test_case, screenshot_dir):
         logging.error(f"❌ Missing HOME_PAGE URL for test '{test_name}' (market: {market_code}, model: {model_code}).")
         allure.attach(f"❌ Missing HOME_PAGE URL for test '{test_name}' (market: {market_code}, model: {model_code}).")
         return
+    
+    
+    # Generar ID único y consistente para Allure
+    uid_raw = f"{test_name}_{market_code}_{model_code or 'unknown'}"
+    uid_hashed = hashlib.md5(uid_raw.encode()).hexdigest()
+    allure.dynamic.id(uid_hashed)
 
     # Define browser options and create driver
     options = build_chrome_options()

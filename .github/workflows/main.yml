@@ -32,7 +32,7 @@ jobs:
 
       - name: Run tests scripts directly
         run: |
-          poetry run pytest QAAppAllure.py --alluredir=allure-results
+          poetry run pytest QAAppAllure.py --alluredir=allure-results --reruns 2
 
       # 📥 Descargar historial desde gh-pages
       - name: Get Allure history
