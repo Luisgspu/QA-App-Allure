@@ -3,7 +3,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from CTAVerifier import CTAVerifier
+from App.CTAVerifier import CTAVerifier
 
 class CTAHandler:
     def __init__(self, driver):

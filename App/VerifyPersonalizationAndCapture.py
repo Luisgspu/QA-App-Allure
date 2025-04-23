@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
-from ScreenshotHandler import ScreenshotHandler
+from App.ScreenshotHandler import ScreenshotHandler
 
 # Función para adjuntar capturas de pantalla a Allure
 def attach_screenshot_to_allure(screenshot_path):

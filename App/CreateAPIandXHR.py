@@ -1,6 +1,6 @@
 # 🔁 IMPORTS (si no están en este archivo)
-from vehicle_api import VehicleAPI
-from XHRResponseCapturer import XHRResponseCapturer # Si esto está en otro archivo
+from App.vehicle_api import VehicleAPI
+from App.XHRResponseCapturer import XHRResponseCapturer # Si esto está en otro archivo
 # TARGET_URL_FILTER debe estar definido globalmente o pasar como argumento
 
 TARGET_URL_FILTER = "https://daimleragemea.germany-2.evergage.com/"

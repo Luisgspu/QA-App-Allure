@@ -24,6 +24,7 @@ import requests
 
 # Local Module Imports
 from App.vehicle_api import VehicleAPI  # Importing from the separate module
+from App.modelcodesAPI import ModelCodesAPI
 from App.ImageVerifier import ImageVerifier  # Importing from the separate module
 from App.ScreenshotHandler import ScreenshotHandler  # Importing from the separate module
 from App.XHRResponseCapturer import XHRResponseCapturer  # Importing from the separate module
