@@ -26,11 +26,11 @@ from CTAHandlerDOM import CTAHandler  # Importing from the separate module
 from CTAVerifier import CTAVerifier   # Importing from the separate module  
 from TestsCodes import test_bfv1
 from TestsCodes import test_bfv2
-from TestsCodes import bfv3_test
-from TestsCodes import LastConfigStarted_test
-from TestsCodes import LastConfigCompleted_test
-from TestsCodes import LastSeenSRP_test
-from TestsCodes import LastSeenPDP_test
+from TestsCodes import test_bfv3
+from TestsCodes import test_LastConfigStarted
+from TestsCodes import Test_LastConfigCompleted
+from TestsCodes import test_LastSeenSRP
+from TestsCodes import test_LastSeenPDP
 from TestsCodes import PersonalizedCTA1_test
 from TestsCodes import PersonalizedCTA2_test
 from TestsCodes import PersonalizedCTA3_test
@@ -274,7 +274,7 @@ class TestBFVPC(unittest.TestCase):
                 
             elif test_name == "BFV3":
                 logging.info(f"🔍 Running BFV3 test... 🔄 Attempt {retries + 1} for BFV3 test")
-                bfv3_test_instance = bfv3_test.BFV3Test(self.driver, urls, test_link)
+                bfv3_test_instance = test_bfv3.BFV3Test(self.driver, urls, test_link)
                 bfv3_test_instance.run()
                 logging.info("✅ BFV3 test completed.") 
                 
@@ -328,7 +328,7 @@ class TestBFVPC(unittest.TestCase):
                 
             elif test_name == "Last Configuration Started":
                 logging.info(f"🔍 Running Last Configuration Started test... 🔄 Attempt {retries + 1} for Last Configuration Started test")
-                lc_started_test_instance = LastConfigStarted_test.LCStartedTest(self.driver, urls, test_link)
+                lc_started_test_instance = test_LastConfigStarted.LCStartedTest(self.driver, urls, test_link)
                 lc_started_test_instance.run()
                 logging.info("✅ Last Configuration Started test completed.")
                 
@@ -379,7 +379,7 @@ class TestBFVPC(unittest.TestCase):
             
             elif test_name == "Last Configuration Completed":
                 logging.info(f"🔍 Running Last Configuration Completed test... 🔄 Attempt {retries + 1} for Last Configuration Completed test")
-                lc_started_test_instance = LastConfigCompleted_test.LCCompletedTest(self.driver, urls, test_link)
+                lc_started_test_instance = Test_LastConfigCompleted.LCCompletedTest(self.driver, urls, test_link)
                 lc_started_test_instance.run()
                 logging.info("✅ Last Configuration Completed test completed.")
                 
@@ -429,7 +429,7 @@ class TestBFVPC(unittest.TestCase):
                 
             elif test_name == "Last Seen SRP":
                 logging.info(f"🔍 Running Last Seen SRP test... 🔄 Attempt {retries + 1} for Last Seen SRP test")
-                last_seen_srp_test_instance = LastSeenSRP_test.LSeenSRPTest(self.driver, urls, test_link)
+                last_seen_srp_test_instance = test_LastSeenSRP.LSeenSRPTest(self.driver, urls, test_link)
                 last_seen_srp_test_instance.run()
                 logging.info("✅ Last Seen SRP test completed.")
                 time.sleep(4)
@@ -480,7 +480,7 @@ class TestBFVPC(unittest.TestCase):
             
             elif test_name == "Last Seen PDP":
                 logging.info(f"🔍 Running Last Seen PDP test... 🔄 Attempt {retries + 1} for Last Seen PDP test")
-                last_seen_srp_test_instance = LastSeenPDP_test.LSeenPDPTest(self.driver, urls, test_link)
+                last_seen_srp_test_instance = test_LastSeenPDP.LSeenPDPTest(self.driver, urls, test_link)
                 last_seen_srp_test_instance.run()
                 logging.info("✅ Last Seen PDP test completed.")
                 

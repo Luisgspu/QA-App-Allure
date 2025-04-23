@@ -34,7 +34,22 @@ jobs:
         run: |
           poetry run pytest QAAppAllure.py --alluredir=allure-results
 
-      - name: Generate Allure Report (static folder)
+      # 📥 Descargar historial desde gh-pages
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # 🧠 Copiar historial a allure-results (antes de generar)
+      - name: Copy Allure history
+        run: |
+          mkdir -p allure-results/history
+          cp -r gh-pages/history allure-results/history || echo "No history"
+
+      # 🛠️ Generar el reporte con historial incorporado
+      - name: Generate Allure Report
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
@@ -45,29 +60,14 @@ jobs:
           name: allure-report
           path: allure-report
 
-      - name: Get Allure history
-        uses: actions/checkout@v2
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
       - name: Upload Allure raw results
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
 
-      - name: Copy Allure history
-        if: always()
-        run: |
-          mkdir -p allure-report/history
-          cp -r gh-pages/history allure-report/history || echo "No history"
-
+      # 🚀 Deploy del reporte a GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
@@ -77,9 +77,11 @@ jobs:
           user_email: github-actions@github.com
           enable_jekyll: false
 
+      # 🔖 Metadata extra opcional
       - name: Set current date as env variable
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
           echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
           echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
           echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+

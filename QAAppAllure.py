@@ -38,11 +38,11 @@ from App.CreateAPIandXHR import create_api_and_xhr
 from App.VerifyPersonalizationAndCapture import verify_personalization_and_capture
 from TestsCodes import test_bfv1
 from TestsCodes import test_bfv2
-from TestsCodes import bfv3_test
-from TestsCodes import LastConfigStarted_test
-from TestsCodes import LastConfigCompleted_test
-from TestsCodes import LastSeenSRP_test
-from TestsCodes import LastSeenPDP_test
+from TestsCodes import test_bfv3
+from TestsCodes import test_LastConfigStarted
+from TestsCodes import test_LastConfigCompleted
+from TestsCodes import test_LastSeenSRP
+from TestsCodes import test_LastSeenPDP
 from TestsCodes import PersonalizedCTA1_test
 from TestsCodes import PersonalizedCTA2_test
 from TestsCodes import PersonalizedCTA3_test
@@ -52,11 +52,11 @@ from TestsCodes import PersonalizedCTA4_test
 test_mapping = {
     "BFV1": test_bfv1.BFV1Test,
     "BFV2": test_bfv2.BFV2Test,
-    "BFV3": bfv3_test.BFV3Test,
-    "Last Configuration Started": LastConfigStarted_test.LCStartedTest,
-    "Last Configuration Completed": LastConfigCompleted_test.LCCompletedTest,
-    "Last Seen SRP": LastSeenSRP_test.LSeenSRPTest,
-    "Last Seen PDP": LastSeenPDP_test.LSeenPDPTest,
+    "BFV3": test_bfv3.BFV3Test,
+    "Last Configuration Started": test_LastConfigStarted.LCStartedTest,
+    "Last Configuration Completed": test_LastConfigCompleted.LCCompletedTest,
+    "Last Seen SRP": test_LastSeenSRP.LSeenSRPTest,
+    "Last Seen PDP": test_LastSeenPDP.LSeenPDPTest,
     "Personalized CTA 1": PersonalizedCTA1_test.PersonalizedCTA1Test,
     "Personalized CTA 2": PersonalizedCTA2_test.PersonalizedCTA2Test,
     "Personalized CTA 3": PersonalizedCTA3_test.PersonalizedCTA3Test,
@@ -202,6 +202,13 @@ manual_test_cases = [
     
     {
         "test_name": "BFV2",
+        "market_code": "DE/de",
+        "model_code": "C236",
+        
+    },
+    
+    {
+        "test_name": "Last Configuration Started",
         "market_code": "DE/de",
         "model_code": "C236",
         
