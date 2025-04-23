@@ -15,6 +15,9 @@ requests = ">=2.32.3,<3.0.0"
 selenium-stealth = "^1.0.6"
 pytest-rerunfailures = "^15.0"
 
+[tool.poetry.group.dev.dependencies]
+allure-pytest = "^2.14.0"
+
 [tool.pytest.ini_options]
 testpaths = [
     "TestsCodes"
