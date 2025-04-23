@@ -77,23 +77,24 @@ jobs:
 
       - name: Set current date as env variable.
         run: |
-          echo "event_name=$GITHUB_EVENT_NAME" >> $GITHUB_OUTPUT
-          echo "workflow=$GITHUB_WORKFLOW" >> $GITHUB_OUTPUT
-          echo "actor=$GITHUB_ACTOR" >> $GITHUB_OUTPUT
-          echo "run_number=$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
-        id: version
+          echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
+          echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
+          echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
+          echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+        
 
       - name: Send email notification.
         env:
-          EMAIL_SENDER: ${{secrets.MAIL_USERNAME}}
-          EMAIL_PASSWORD: ${{secrets.MAIL_PASSWORD}}
+          EMAIL_SENDER: ${{ secrets.MAIL_USERNAME }}
+          EMAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
           ENV: DEV
-          RUN_NUMBER: ${{ steps.version.outputs.run_number }}
-          EVENT_NAME: ${{ steps.version.outputs.event_name }}
-          WORKFLOW: ${{ steps.version.outputs.workflow }}
-          ACTOR: ${{ steps.version.outputs.actor }}
+          RUN_NUMBER: ${{ env.run_number }}
+          EVENT_NAME: ${{ env.event_name }}
+          WORKFLOW: ${{ env.workflow }}
+          ACTOR: ${{ env.actor }}
         run: |
           poetry run python send_notification.py
+            -- name: Send Slack notification.
 
     
