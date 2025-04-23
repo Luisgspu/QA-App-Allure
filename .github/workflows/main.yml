@@ -53,13 +53,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Allure Report action from marketplace.
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
-
       - name: Upload Allure raw results
         if: always()
         uses: actions/upload-artifact@v4
@@ -68,16 +61,23 @@ jobs:
           path: allure-results
     
 
+      - name: Copy Allure history
+        if: always()
+        run: |
+          mkdir -p allure-report/history
+          cp -r gh-pages/history allure-report/history || echo "No history"
+
       - name: Deploy Allure Report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report  # <== corregido
+          publish_dir: allure-report
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
-          
+
       - name: Set current date as env variable.
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
