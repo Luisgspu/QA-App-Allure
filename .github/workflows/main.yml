@@ -33,10 +33,7 @@ jobs:
       - name: Run tests scripts directly
         run: |
           poetry run pytest QAAppAllure.py --alluredir=allure-results --reruns 2
-
-      - name: Debug Allure history
-        run: ls -la allure-results/history || echo "No history found"    
-
+   
       # 📥 Descargar historial desde gh-pages
       - name: Get Allure history
         uses: actions/checkout@v2
@@ -50,6 +47,9 @@ jobs:
         run: |
           mkdir -p allure-results/history
           cp -r gh-pages/history allure-results/history || echo "No history"
+
+      - name: Debug Allure history
+        run: ls -la allure-results/history || echo "No history found"  
 
       # 🛠️ Generar el reporte con historial incorporado
       - name: Generate Allure Report
