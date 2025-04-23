@@ -7,6 +7,11 @@ import logging
 import sys
 import pytest
 import allure
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Third-Party Imports
 from selenium import webdriver 
@@ -19,7 +24,6 @@ from selenium_stealth import stealth
 import requests
 
 # Local Module Imports
-from TestSteps import navigate_to_home_page
 from vehicle_api import VehicleAPI  # Importing from the separate module
 from ImageVerifier import ImageVerifier  # Importing from the separate module
 from ScreenshotHandler import ScreenshotHandler  # Importing from the separate module
@@ -43,6 +47,7 @@ from TestsCodes import PersonalizedCTA1_test
 from TestsCodes import PersonalizedCTA2_test
 from TestsCodes import PersonalizedCTA3_test
 from TestsCodes import PersonalizedCTA4_test
+
 
 test_mapping = {
     "BFV1": bfv1_test.BFV1Test,
