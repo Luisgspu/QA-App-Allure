@@ -58,7 +58,7 @@ jobs:
       # ▶️ Ejecutar tests con Allure
       - name: Run tests scripts directly
         run: |
-          pytest QAAppAllure.py -2 auto -s -v --reruns 2 --alluredir=allure-results
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 2 --alluredir=allure-results
 
       # 🛠️ Generar reporte con historial
       - name: Generate Allure Report
