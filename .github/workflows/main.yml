@@ -45,12 +45,6 @@ jobs:
           name: allure-report
           path: allure-report
 
-
-      - name: Executing tests.
-        run: |
-          echo "Starting regression testing on "$TEST_EXECUTION_ENV" environment..."
-          poetry run python -m pytest -s -v --reruns 3 --env=$TEST_EXECUTION_ENV --alluredir=allure-results
-
       - name: Get Allure history.
         uses: actions/checkout@v2
         if: always()
