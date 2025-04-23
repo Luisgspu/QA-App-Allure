@@ -71,9 +71,9 @@ jobs:
       - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-reports
+          publish_dir: allure-report
 
       - name: Set current date as env variable.
         run: |
