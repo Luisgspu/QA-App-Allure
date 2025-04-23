@@ -31,8 +31,8 @@ jobs:
 
       - name: Run tests scripts directly
         run: |
-           poetry run python QAAppAllure.py
-
+          poetry run pytest -s -v --reruns 3 --alluredir=allure-results
+          
       - name: Generate .config.yaml with data
         env:
           DEV_SUPERUSER_EMAIL: ${{ vars.DEV_SUPERUSER_EMAIL }}

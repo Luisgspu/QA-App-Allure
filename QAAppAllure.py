@@ -36,7 +36,7 @@ from App.CreateDriver import restart_driver
 from App.CreateDriver import build_chrome_options
 from App.CreateAPIandXHR import create_api_and_xhr
 from App.VerifyPersonalizationAndCapture import verify_personalization_and_capture
-from TestsCodes import bfv1_test
+from TestsCodes import test_bfv1
 from TestsCodes import bfv2_test
 from TestsCodes import bfv3_test
 from TestsCodes import LastConfigStarted_test
@@ -50,7 +50,7 @@ from TestsCodes import PersonalizedCTA4_test
 
 
 test_mapping = {
-    "BFV1": bfv1_test.BFV1Test,
+    "BFV1": test_bfv1.BFV1Test,
     "BFV2": bfv2_test.BFV2Test,
     "BFV3": bfv3_test.BFV3Test,
     "Last Configuration Started": LastConfigStarted_test.LCStartedTest,
@@ -205,20 +205,7 @@ manual_test_cases = [
         
     },
     
-    {
-        "test_name": "BFV2",
-        "market_code": "CH/it",
-        "model_code": "C236",
-        
-    },
     
-    
-     {
-        "test_name": "Last Configuration Started",
-        "market_code": "CH/it",
-        "model_code": "C236",
-        
-    },
      
 
     

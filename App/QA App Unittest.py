@@ -24,7 +24,7 @@ from XHRResponseCapturer import XHRResponseCapturer  # Importing from the separa
 from CookiesHandler import CookieHandler  # Importing from the separate module
 from CTAHandlerDOM import CTAHandler  # Importing from the separate module
 from CTAVerifier import CTAVerifier   # Importing from the separate module  
-from TestsCodes import bfv1_test
+from TestsCodes import test_bfv1
 from TestsCodes import bfv2_test
 from TestsCodes import bfv3_test
 from TestsCodes import LastConfigStarted_test
@@ -162,7 +162,7 @@ class TestBFVPC(unittest.TestCase):
 
             if test_name == "BFV1":
                 logging.info(f"🔍 Running BFV1 test... 🔄 Attempt {retries + 1} for BFV1 test")
-                bfv1_test_instance = bfv1_test.BFV1Test(self.driver, urls, test_link)
+                bfv1_test_instance = test_bfv1.BFV1Test(self.driver, urls, test_link)
                 bfv1_test_instance.run()
                 logging.info("✅ BFV1 test completed.")
 
