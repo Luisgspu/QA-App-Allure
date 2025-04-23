@@ -68,15 +68,16 @@ jobs:
           path: allure-results
     
 
-      - name: Deploy report to GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-reports
-          username: github-actions
-          useremail: github-actions@github.com
-
+          publish_dir: allure-report  # <== corregido
+          user_name: github-actions
+          user_email: github-actions@github.com
+          enable_jekyll: false
+          
       - name: Set current date as env variable.
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
