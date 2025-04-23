@@ -84,19 +84,6 @@ jobs:
           echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
           echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
         
-'''
-      - name: Send email notification.
-        env:
-          EMAIL_SENDER: ${{ secrets.MAIL_USERNAME }}
-          EMAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
-          ENV: DEV
-          RUN_NUMBER: ${{ env.run_number }}
-          EVENT_NAME: ${{ env.event_name }}
-          WORKFLOW: ${{ env.workflow }}
-          ACTOR: ${{ env.actor }}
-        run: |
-          poetry run python send_notification.py
-''' 
+
 
     
