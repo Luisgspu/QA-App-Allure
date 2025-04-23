@@ -15,6 +15,18 @@ requests = ">=2.32.3,<3.0.0"
 selenium-stealth = "^1.0.6"
 pytest-rerunfailures = "^15.0"
 
+[tool.pytest.ini_options]
+testpaths = [
+    "TestsCodes"
+]
+python_files = [
+    "test_*.py",
+    "*_test.py"
+]
+python_functions = [
+    "test_*"
+]
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
