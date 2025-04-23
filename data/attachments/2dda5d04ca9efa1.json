@@ -1,0 +1,49 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_italy_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiaXRfSVQiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56Lml0LyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjMifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjE3MDc4MzY0NTQuMTc0NTQ0ODA3MCJ9LCJhbm9uSWQiOiJmYzI3ODdjZjU3YzFkZDUzIn0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiMzE1NTE3MjcwNDU3MzI4MzYifQ%3D%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "E46oQ",
+                "campaignName": "dcp-last-seen-pdp-srp | all available models | home | simple-teaser and campaign-module",
+                "campaignType": "Web",
+                "experienceId": "9gzhJ",
+                "experienceName": "Experience 1",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always on - dcp-last-seen-pdp-srp - simple-teaser and campaign-module"
+                ],
+                "payload": {
+                    "apikey": "b448a559-eb9e-4396-812f-25b45f84c63a",
+                    "pdp_headline": "La tua prossima Mercedes-Benz ti aspetta.",
+                    "srp_cta_label": "Pronta consegna",
+                    "experience": "9gzhJ",
+                    "trackingBlock": false,
+                    "srp_headline": "Scopri tutte le auto nello Showroom Online.",
+                    "pdp_subline": "Trova l'auto dei sogni e richiedi preventivo.",
+                    "campaign": "E46oQ",
+                    "srp_subline": "Ti interessa ancora MODEL?",
+                    "pdp_cta_label": "Pronta consegna",
+                    "userGroup": "Test",
+                    "lastSRPModelFilter": {
+                        "value": "{\"dcp_last_modelfilter\":\"s-class\",\"dcp_last_bodytypefilter\":\"limousine\",\"dcp_last_search_url\":\"https://www.mercedes-benz.it/passengercars/buy/new-car/search-results.html/vehicleCategory-new-passenger-cars/brand-Mercedes-Benz/modelIdentifier-S_CLASS?emhsortType=price-asc&emhbodyType=LIMOUSINE\",\"timestamp\":1745448076591,\"expiration\":120}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null,
+                    "lastSeenPDP": null
+                }
+            }
+        ]
+    }
+}
