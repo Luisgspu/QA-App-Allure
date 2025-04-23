@@ -60,6 +60,7 @@ jobs:
 
       # 🛠️ Generar reporte con historial
       - name: Generate Allure Report
+        if : always()
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
@@ -71,6 +72,7 @@ jobs:
           path: allure-report
 
       - name: Upload Allure raw results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
@@ -78,6 +80,7 @@ jobs:
 
       # 🚀 Deploy Allure Report + historial a GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
+        if : always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
