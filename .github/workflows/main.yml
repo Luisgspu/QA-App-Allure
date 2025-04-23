@@ -31,7 +31,7 @@ jobs:
 
       - name: Run tests scripts directly
         run: |
-          poetry run python App/QAAppAllure.py
+          poetry run python QAAppAllure.py
 
       - name: Generate .config.yaml with data
         env:
