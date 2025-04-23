@@ -3,6 +3,8 @@ name: On Push Event Workflow — DEV Environment — API Regression
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+  
 
 env:
   TEST_EXECUTION_ENV: dev
@@ -23,7 +25,6 @@ jobs:
           python3 core/helpers/install_poetry.py
           poetry --version
           poetry install --no-root
-          source `poetry env info --path`/bin/activate
 
       - name: Generate .config.yaml with data.
         env:
@@ -52,6 +53,14 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
 
+      - name: Upload Allure raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+    
+
       - name: Deploy report to Github Pages.
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -72,7 +81,7 @@ jobs:
         env:
           EMAIL_SENDER: ${{secrets.MAIL_USERNAME}}
           EMAIL_PASSWORD: ${{secrets.MAIL_PASSWORD}}
-          EMAIL_RECEIVERS: zokirovrustam202@gmail.com
+          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
           ENV: DEV
           RUN_NUMBER: ${{ steps.version.outputs.run_number }}
           EVENT_NAME: ${{ steps.version.outputs.event_name }}
@@ -80,3 +89,5 @@ jobs:
           ACTOR: ${{ steps.version.outputs.actor }}
         run: |
           poetry run python send_notification.py
+
+    
