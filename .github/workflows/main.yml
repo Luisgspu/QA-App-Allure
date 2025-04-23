@@ -45,12 +45,6 @@ jobs:
           name: allure-report
           path: allure-report
 
-      - name: Generate .config.yaml with data
-        env:
-          DEV_SUPERUSER_EMAIL: ${{ vars.DEV_SUPERUSER_EMAIL }}
-          DEV_SUPERUSER_PASSWORD: ${{ vars.DEV_SUPERUSER_PASSWORD }}
-        run: |
-          poetry run python generate_config.py
 
       - name: Executing tests.
         run: |
