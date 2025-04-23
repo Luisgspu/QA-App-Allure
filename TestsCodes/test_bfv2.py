@@ -83,7 +83,8 @@ class BFV2Test:
             self.driver.get(self.urls['HOME_PAGE'])
             logging.info(f"🌍 Navigated back to: {self.urls['HOME_PAGE']}")
             WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-
+            
+    @allure.step("Navigate to Salesforce URL")
     def navigate_to_salesforce(self):
         """Navigate to the Salesforce URL if test_link is provided."""
         salesforce_url = self.urls['HOME_PAGE'] + self.test_link
