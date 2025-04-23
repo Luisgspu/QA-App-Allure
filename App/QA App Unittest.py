@@ -25,7 +25,7 @@ from CookiesHandler import CookieHandler  # Importing from the separate module
 from CTAHandlerDOM import CTAHandler  # Importing from the separate module
 from CTAVerifier import CTAVerifier   # Importing from the separate module  
 from TestsCodes import test_bfv1
-from TestsCodes import bfv2_test
+from TestsCodes import test_bfv2
 from TestsCodes import bfv3_test
 from TestsCodes import LastConfigStarted_test
 from TestsCodes import LastConfigCompleted_test
@@ -224,7 +224,7 @@ class TestBFVPC(unittest.TestCase):
             elif test_name == "BFV2":
                 logging.info(f"🔍 Running BFV2 test... 🔄 Attempt {retries + 1} for BFV2 test")
                 # Assuming BFV2Test is another test class, instantiate and run it
-                bfv2_test_instance = bfv2_test.BFV2Test(self.driver, urls, test_link)
+                bfv2_test_instance = test_bfv2.BFV2Test(self.driver, urls, test_link)
                 bfv2_test_instance.run()
                 logging.info("✅ BFV2 test completed.")
 
