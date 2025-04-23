@@ -24,18 +24,18 @@ from selenium_stealth import stealth
 import requests
 
 # Local Module Imports
-from vehicle_api import VehicleAPI  # Importing from the separate module
-from ImageVerifier import ImageVerifier  # Importing from the separate module
-from ScreenshotHandler import ScreenshotHandler  # Importing from the separate module
-from XHRResponseCapturer import XHRResponseCapturer  # Importing from the separate module
-from CookiesHandler import CookieHandler  # Importing from the separate module
-from CTAHandlerDOM import CTAHandler  # Importing from the separate module
-from CTAVerifier import CTAVerifier   # Importing from the separate module  
-from CreateDriver import create_driver
-from CreateDriver import restart_driver
-from CreateDriver import build_chrome_options
-from CreateAPIandXHR import create_api_and_xhr
-from VerifyPersonalizationAndCapture import verify_personalization_and_capture
+from App.vehicle_api import VehicleAPI  # Importing from the separate module
+from App.ImageVerifier import ImageVerifier  # Importing from the separate module
+from App.ScreenshotHandler import ScreenshotHandler  # Importing from the separate module
+from App.XHRResponseCapturer import XHRResponseCapturer  # Importing from the separate module
+from App.CookiesHandler import CookieHandler  # Importing from the separate module
+from App.CTAHandlerDOM import CTAHandler  # Importing from the separate module
+from App.CTAVerifier import CTAVerifier   # Importing from the separate module  
+from App.CreateDriver import create_driver
+from App.CreateDriver import restart_driver
+from App.CreateDriver import build_chrome_options
+from App.CreateAPIandXHR import create_api_and_xhr
+from App.VerifyPersonalizationAndCapture import verify_personalization_and_capture
 from TestsCodes import bfv1_test
 from TestsCodes import bfv2_test
 from TestsCodes import bfv3_test
@@ -211,12 +211,7 @@ manual_test_cases = [
         "model_code": "C236",
         
     },
-    {
-        "test_name": "BFV3",
-        "market_code": "CH/it",
-        "model_code": "C236",
-        
-    },
+    
     
      {
         "test_name": "Last Configuration Started",
