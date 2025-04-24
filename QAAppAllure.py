@@ -219,6 +219,13 @@ manual_test_cases = [
         "model_code": "V177-fl",
         
     },
+    
+    {
+        "test_name": "BFV2",
+        "market_code": "IT/it",
+        "model_code": "C236",
+        
+    },
    
 
     
