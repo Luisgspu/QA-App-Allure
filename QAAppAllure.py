@@ -203,9 +203,7 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 
 # Manually defined test cases
 manual_test_cases = [
-    
-    
-      {
+    {
         "test_name": "BFV2",
         "market_code": "IT/it",
         "model_code": "C236",
@@ -215,19 +213,6 @@ manual_test_cases = [
         "market_code": "IT/it",
         "model_code": "C236",
     },
-   
-   
-    
-    
-
-    
-     
-
-    
-    
-    
-    
-    # Add more manually defined test cases here
 ]
 
 # Fetch dynamic test cases for manual model codes
