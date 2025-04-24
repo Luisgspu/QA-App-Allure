@@ -34,11 +34,9 @@ jobs:
 
       # 📥 Descargar historial desde gh-pages
       - name: Get Allure history
-        uses: actions/checkout@v4
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+        run: |
+          git fetch origin gh-pages:gh-pages || echo "No gh-pages branch found"
+          git checkout gh-pages || echo "No gh-pages branch to check out"
 
        # 🔍 Debug gh-pages directory
       - name: Debug gh-pages directory
