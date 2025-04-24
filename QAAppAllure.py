@@ -229,6 +229,13 @@ manual_test_cases = [
         
     },
     
+    {
+        "test_name": "Last Seen PDP",
+        "market_code": "IT/it",
+        "model_code": "C236",
+        
+    },
+    
     
    
     
