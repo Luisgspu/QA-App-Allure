@@ -211,6 +211,38 @@ manual_test_cases = [
 
     },
     
+    {
+        "test_name": "BFV2",
+        "market_code": "IT/it",
+
+    },
+    {
+        "test_name": "BFV3",
+        "market_code": "IT/it",
+
+    },
+    {
+        "test_name": "Last Seen SRP",
+        "market_code": "IT/it",
+
+    },
+    {
+        "test_name": "Last Seen PDP",
+        "market_code": "IT/it",
+
+    },
+    
+    {
+        "test_name": "Last Configuration Started",
+        "market_code": "IT/it",
+
+    },
+    {
+        "test_name": "Last Configuration Completed",
+        "market_code": "IT/it",
+
+    },
+    
     
 ]
 

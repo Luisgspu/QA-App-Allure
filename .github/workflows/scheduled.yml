@@ -92,18 +92,38 @@ jobs:
           echo '  </body>' >> index.html
           echo '</html>' >> index.html
 
-      # 🚀 Deploy Allure Report + historial a GitHub Pages
+      # 🚀 Deploy Allure Report to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
-        if : always()
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
-          destination_dir: ${{ github.run_number }} # Use run number for versioning
+          destination_dir: ${{ github.run_number }} # Deploy report to subdirectory
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
+          keep_files: true # Preserve existing files and subdirectories
+
+       # 🚀 Deploy Updated Index to Root of GitHub Pages
+      - name: Move index.html to temporary directory
+        if: always()
+        run: |
+          mkdir temp_deploy
+          mv index.html temp_deploy/
+
+      - name: Deploy Updated Index to Root
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: temp_deploy # Deploy only the index.html file
+          user_name: github-actions
+          user_email: github-actions@github.com
+          enable_jekyll: false
+          keep_files: true # Preserve existing files and subdirectories
 
       
         # 🔗 Output the Allure Report URL
