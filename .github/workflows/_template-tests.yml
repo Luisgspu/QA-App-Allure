@@ -69,13 +69,14 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Deploy Versioned Allure Report
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
+          destination_dir: ${{ github.run_number }}
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
