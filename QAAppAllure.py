@@ -204,40 +204,20 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 # Manually defined test cases
 manual_test_cases = [
     
-
-
     
-    {
-        "test_name": "BFV1",
-        "market_code": "IT/it",
-        "model_code": "C236",
-        
-    },
       {
         "test_name": "BFV2",
         "market_code": "IT/it",
         "model_code": "C236",
-        
     },
-    
-     {
+    {
         "test_name": "BFV3",
         "market_code": "IT/it",
         "model_code": "C236",
-        
     },
-    
    
    
     
- 
-   
-
-    
-    
-   
-    
-
     
 
     
