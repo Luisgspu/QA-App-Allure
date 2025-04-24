@@ -77,6 +77,21 @@ jobs:
           name: allure-results
           path: allure-results
 
+      # 🔄 Update index.html for latest report
+      - name: Update index.html for latest report
+        run: |
+          echo '<!DOCTYPE html>' > index.html
+          echo '<html>' >> index.html
+          echo '  <head>' >> index.html
+          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> index.html
+          echo '    <title>Redirecting to Latest Allure Report</title>' >> index.html
+          echo '  </head>' >> index.html
+          echo '  <body>' >> index.html
+          echo '    <p>Redirecting to the latest report...</p>' >> index.html
+          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> index.html
+          echo '  </body>' >> index.html
+          echo '</html>' >> index.html
+
       # 🚀 Deploy Allure Report + historial a GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         if : always()
