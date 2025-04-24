@@ -1,11 +1,9 @@
-name: Main Event Workflow — DEV Environment
-
+# .github/workflows/main.yml
+name: Run Tests on Push
 
 on:
-  push:
-    branches: [main]
-env:
-  TEST_EXECUTION_ENV: dev
+  workflow_dispatch:
+
 
 jobs:
   test:

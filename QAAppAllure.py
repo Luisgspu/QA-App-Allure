@@ -118,15 +118,24 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
     # BFV Logic
     if 'CONFIGURATOR' not in urls or not urls['CONFIGURATOR']:
         if test_name in ["BFV1", "BFV2", "BFV3", "Last Configuration Started", "Last Configuration Completed"]:
-            raise Exception(f"❌ Not possible to test due to lack of CONFIGURATOR URL.")
+            message = f"❌ Skipping test '{test_name}' due to lack of CONFIGURATOR URL."
+            logging.warning(message)
+            allure.dynamic.description(message)
+            pytest.skip(message)
 
     if 'ONLINE_SHOP' not in urls or not urls['ONLINE_SHOP']:
         if test_name in ["BFV2", "BFV3", "Last Seen PDP", "Last Seen SRP"]:
-            raise Exception(f"❌ Not possible to test due to lack of ONLINE_SHOP URL.")
+            message = f"❌ Skipping test '{test_name}' due to lack of ONLINE_SHOP URL."
+            logging.warning(message)
+            allure.dynamic.description(message)
+            pytest.skip(message)
 
     if 'TEST_DRIVE' not in urls or not urls['TEST_DRIVE']:
         if test_name == "BFV3":
-            raise Exception(f"❌ Not to test due to lack of TEST_DRIVE URL.")
+            message = f"❌ Skipping test '{test_name}' due to lack of TEST_DRIVE URL."
+            logging.warning(message)
+            allure.dynamic.description(message)
+            pytest.skip(message)
 
 
     while retries < max_retries:
@@ -201,10 +210,15 @@ manual_test_cases = [
     {
         "test_name": "BFV1",
         "market_code": "IT/it",
-    
+        "model_code": "C236",
         
     },
-    
+    {
+        "test_name": "BFV1",
+        "market_code": "IT/it",
+        "model_code": "V177-fl",
+        
+    },
    
 
     
