@@ -11,72 +11,96 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
-      - name: Install Poetry, install requirements, and activate venv.
+      - name: Install Poetry and dependencies
         run: |
-          echo "The job was triggered by: $GITHUB_ACTOR"
-          python3 core/helpers/install_poetry.py
-          poetry --version
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          poetry add pytest-rerunfailures
           poetry install --no-root
-          source `poetry env info --path`/bin/activate
 
-      - name: Generate .config.yaml with data.
-        env:
-          DEV_SUPERUSER_EMAIL: ${{ vars.DEV_SUPERUSER_EMAIL }}
-          DEV_SUPERUSER_PASSWORD: ${{ vars.DEV_SUPERUSER_PASSWORD }}
-        run: |
-          poetry run python generate_config.py
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
 
-      - name: Executing tests.
-        run: |
-          echo "Starting regression testing on "$TEST_EXECUTION_ENV" environment..."
-          poetry run python -m pytest -s -v --reruns 3 --env=$TEST_EXECUTION_ENV --alluredir=allure-results
-
-      - name: Get Allure history.
-        uses: actions/checkout@v2
-        if: always()
+      # 📥 Descargar historial desde gh-pages
+      - name: Get Allure history
+        uses: actions/checkout@v4
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Allure Report action from marketplace.
-        uses: simple-elf/allure-report-action@master
-        if: always()
+       # 🔍 Debug gh-pages directory
+      - name: Debug gh-pages directory
+        run: ls -la gh-pages || echo "No gh-pages directory found"    
+
+      # 🧠 Copiar historial a allure-results
+      - name: Copy Allure history
+        run: |
+          mkdir -p allure-results/history
+          if [ -d gh-pages/history ]; then
+            cp -r gh-pages/history/* allure-results/history || echo "No previous history"
+          fi
+
+      - name: Debug Allure history
+        run: ls -la allure-results/history || echo "No history found"
+
+      # ▶️ Ejecutar tests con Allure
+      - name: Run tests scripts directly
+        run: |
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 2 --alluredir=allure-results
+
+      # 🛠️ Generar reporte con historial
+      - name: Generate Allure Report
+        if : always()
+        run: |
+          npm install -g allure-commandline --save-dev
+          allure generate allure-results -o allure-report --clean
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
         with:
-          allure_results: allure-results
-          allure_history: allure-history
+          name: allure-report
+          path: allure-report
 
-      - name: Deploy report to Github Pages.
+      - name: Upload Allure raw results
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
 
-      - name: Set current date as env variable.
-        run: |
-          echo "event_name=$GITHUB_EVENT_NAME" >> $GITHUB_OUTPUT
-          echo "workflow=$GITHUB_WORKFLOW" >> $GITHUB_OUTPUT
-          echo "actor=$GITHUB_ACTOR" >> $GITHUB_OUTPUT
-          echo "run_number=$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
-        id: version
+      # 🚀 Deploy Allure Report + historial a GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages
+        if : always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-report
+          destination_dir: ${{ github.run_number }} # Use run number for versioning
+          user_name: github-actions
+          user_email: github-actions@github.com
+          enable_jekyll: false
 
-      - name: Send email notification.
-        env:
-          EMAIL_SENDER: ${{secrets.MAIL_USERNAME}}
-          EMAIL_PASSWORD: ${{secrets.MAIL_PASSWORD}}
-          EMAIL_RECEIVERS: ${{ secrets.EMAIL_RECEIVERS }}
-          ENV: DEV
-          RUN_NUMBER: ${{ steps.version.outputs.run_number }}
-          EVENT_NAME: ${{ steps.version.outputs.event_name }}
-          WORKFLOW: ${{ steps.version.outputs.workflow }}
-          ACTOR: ${{ steps.version.outputs.actor }}
+      
+        # 🔗 Output the Allure Report URL
+      - name: Provide Allure Report URL
+        if: always()
         run: |
-          poetry run python send_notification.py
+          echo "Allure Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ github.run_number }}"
+
+      # 🔖 Metadata extra opcional
+      - name: Set current date as env variable
+        run: |
+          echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
+          echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
+          echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
+          echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
