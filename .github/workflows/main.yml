@@ -107,12 +107,15 @@ jobs:
           enable_jekyll: false
           keep_files: true # Preserve existing files and subdirectories
 
-      # 🚀 Deploy Updated Index to Root of GitHub Pages
-      - name: Deploy Updated Index to Root
+       # 🚀 Deploy Updated Index to Root of GitHub Pages
+      - name: Move index.html to temporary directory
         if: always()
         run: |
           mkdir temp_deploy
           mv index.html temp_deploy/
+
+      - name: Deploy Updated Index to Root
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
