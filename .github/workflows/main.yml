@@ -108,6 +108,17 @@ jobs:
           user_email: github-actions@github.com
           enable_jekyll: false
 
+      # 🚀 Deploy Updated Index to Root of GitHub Pages
+      - name: Deploy Updated Index to Root
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: . # Deploy index.html to the root
+          user_name: github-actions
+          user_email: github-actions@github.com
+          enable_jekyll: false    
+
       
         # 🔗 Output the Allure Report URL
       - name: Provide Allure Report URL
