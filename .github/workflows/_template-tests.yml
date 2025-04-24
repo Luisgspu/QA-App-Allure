@@ -68,18 +68,17 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: Set up git with token
+      - name: Set up git with GitHub Token
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.repository }}.git
-
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Deploy Versioned Allure Report
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
           destination_dir: ${{ github.run_number }} # Use run number for versioning
