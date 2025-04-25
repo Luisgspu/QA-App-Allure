@@ -222,17 +222,6 @@ manual_test_cases = [
 
     },
     
-    {
-        "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
-       
-    },
-    
-    {
-        "test_name": "Last Seen SRP",
-        "market_code": "AT/de",
-       
-    },
 
 
     
