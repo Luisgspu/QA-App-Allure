@@ -55,10 +55,6 @@ jobs:
       - name: Debug Allure history
         run: ls -la allure-results/history || echo "No history found"
 
-      - name: Debug CPU cores
-        run: |
-          echo "Number of CPUs: $(nproc)"
-
       # ▶️ Ejecutar tests con Allure
       - name: Run tests scripts directly
         if: always()
@@ -122,6 +118,9 @@ jobs:
           user_email: github-actions@github.com
           enable_jekyll: false
           keep_files: true # Preserve existing files and subdirectories
+        run: |
+          # Copy the new history folder to the root of gh-pages for future runs
+          cp -r allure-report/history gh-pages/history  
 
       
         # 🔗 Output the Allure Report URL
