@@ -101,20 +101,17 @@ def screenshot_dir():
 
 def run_test(driver, test_name, market_code, model_code, model_name, body_type, attempt, urls, api_and_xhr, screenshot_dir):
     vehicle_api, xhr_capturer = api_and_xhr
-    max_retries = 4
-    retries = 0
     test_success = False
 
     if not urls or 'HOME_PAGE' not in urls or not urls['HOME_PAGE']:
         allure.attach(f"❌ Could not fetch valid URLs for test '{test_name}' (market: {market_code}, model: {model_code})")
-        return
+        pytest.fail(f"Missing HOME_PAGE URL for test '{test_name}'")
 
-    
     allure.step(f"🌐 Fetched URLs from API for test '{test_name}':\n"
                 f"Model Name: {urls.get('MODEL_NAME', 'N/A')}\n"
                 f"Body Type: {urls.get('BODY_TYPE', 'N/A')}\n"
                 f"URLs:\n{json.dumps(urls, indent=2)}")
-    
+
     # BFV Logic
     if 'CONFIGURATOR' not in urls or not urls['CONFIGURATOR']:
         if test_name in ["BFV1", "BFV2", "BFV3", "Last Configuration Started", "Last Configuration Completed"]:
@@ -137,70 +134,43 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
             allure.dynamic.description(message)
             pytest.skip(message)
 
+    try:
+        driver.get(urls['HOME_PAGE'])
+        WebDriverWait(driver, 15).until(lambda d: d.execute_script("return document.readyState") == "complete")
+        logging.info(f"🌍 Navigated to: {urls['HOME_PAGE']}")
+    except Exception as e:
+        logging.error(f"❌ Error navigating to HOME_PAGE: {e}")
+        pytest.fail(f"Error navigating to HOME_PAGE: {e}")
 
-    while retries < max_retries:
-        with allure.step(f"Starting test '{test_name}' (Attempt {retries + 1} of {max_retries})"):
-            if retries > 0:
-                with allure.step("♻️ Restarting browser session..."):
-                    try:
-                        driver.quit()
-                    except Exception as e:
-                        logging.warning(f"⚠️ Failed to quit the browser: {e}")
-                        
-                     # Use the stored options to reinitialize the WebDriver
-                    driver = restart_driver(driver)
-                    driver.fullscreen_window()
-                    
-                    # Reinitialize the XHR capturer with the new WebDriver session
-                    xhr_capturer = XHRResponseCapturer(driver, TARGET_URL_FILTER, "")
-                    api_and_xhr = (api_and_xhr[0], xhr_capturer)
-                    logging.info("✅ Reinitialized XHR capturer for the new browser session.")
+    try:
+        WebDriverWait(driver, 6).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "cmm-cookie-banner"))
+        )
+        time.sleep(2)
+        logging.info("✅ Cookie banner detected.")
+        driver.execute_script("""
+            document.querySelector("cmm-cookie-banner").shadowRoot.querySelector("wb7-button.button--accept-all").click();
+        """)
+        allure.step("✅ Clicked on accept cookies.")
+    except Exception as ex:
+        allure.attach("❌ Cookie banner not found or already accepted.")
 
-            try:
-                driver.get(urls['HOME_PAGE'])
-                WebDriverWait(driver, 15).until(lambda d: d.execute_script("return document.readyState") == "complete")
-                logging.info(f"🌍 Navigated to: {urls['HOME_PAGE']}")
-            except Exception as e:
-                logging.error(f"❌ Error navigating to HOME_PAGE: {e}")
-                retries += 1
-                continue
+    # Execute test
+    if test_name in test_mapping:
+        test_instance = test_mapping[test_name](driver, urls)
+        test_instance.run()
+        allure.step(f"✅ {test_name} test completed.")
+        time.sleep(4)
 
-        try:
-            WebDriverWait(driver, 6).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "cmm-cookie-banner"))
-            )
-            time.sleep(2)
-            logging.info("✅ Cookie banner detected.")
-            driver.execute_script("""
-                document.querySelector("cmm-cookie-banner").shadowRoot.querySelector("wb7-button.button--accept-all").click();
-            """)
-            allure.step("✅ Clicked on accept cookies.")
-        except Exception as ex:
-            allure.attach("❌ Cookie banner not found or already accepted.")
+        test_success = verify_personalization_and_capture(
+            driver, test_name, model_name, body_type, attempt, screenshot_dir,
+            test_success, xhr_capturer, urls
+        )
 
-        # Ejecutar test
-        if test_name in test_mapping:
-            test_instance = test_mapping[test_name](driver, urls)
-            test_instance.run()
-            allure.step(f"✅ {test_name} test completed.")
-            time.sleep(4)
-
-            test_success = verify_personalization_and_capture(
-                driver, test_name, model_name, body_type, retries, screenshot_dir,
-                test_success, xhr_capturer, urls
-            )
-
-        if test_success:
-            logging.info(f"✅ Test '{test_name}' passed on attempt {retries + 1}.")
-            break
-    
-        retries += 1
-
-    if retries == max_retries:
-        failure_message = f"❌ Test '{test_name}' failed after {max_retries} attempts."
+    if not test_success:
+        failure_message = f"❌ Test '{test_name}' failed."
         logging.error(failure_message)
         allure.attach(failure_message, name="Test Failure", attachment_type=allure.attachment_type.TEXT)
-        allure.dynamic.description(failure_message)
         pytest.fail(failure_message)
 
 

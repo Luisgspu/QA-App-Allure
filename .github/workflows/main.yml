@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - parallel-testing
+      - rerun
   workflow_dispatch:
 
 env:
@@ -63,7 +63,7 @@ jobs:
       - name: Run tests scripts directly
         if: always()
         run: |
-          poetry run pytest QAAppAllure.py -n 8 -s -v --reruns 0 --alluredir=allure-results
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 4 --alluredir=allure-results
 
       # 🛠️ Generar reporte con historial
       - name: Generate Allure Report
