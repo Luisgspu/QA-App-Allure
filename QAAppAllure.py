@@ -212,15 +212,29 @@ manual_test_cases = [
     {
         "test_name": "Last Seen PDP",
         "market_code": "IT/it",
-        "model_code": "V223",
+       
 
     },
     {
-        "test_name": "Last Seen PDP",
+        "test_name": "Last Seen SRP",
         "market_code": "IT/it",
-        "model_code": "A236",
+       
 
     },
+    
+    {
+        "test_name": "Last Seen PDP",
+        "market_code": "AT/de",
+       
+    },
+    
+    {
+        "test_name": "Last Seen SRP",
+        "market_code": "AT/de",
+       
+    },
+
+
     
     
     
