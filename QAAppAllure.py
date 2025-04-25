@@ -210,9 +210,9 @@ manual_test_cases = [
     
     
     {
-        "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
-        "model_code": "W247-fl",
+        "test_name": "BFV1",
+        "market_code": "DE/de",
+        "model_code": "A236",
        
 
     },
