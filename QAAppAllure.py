@@ -101,7 +101,7 @@ def screenshot_dir():
 
 def run_test(driver, test_name, market_code, model_code, model_name, body_type, attempt, urls, api_and_xhr, screenshot_dir):
     vehicle_api, xhr_capturer = api_and_xhr
-    max_retries = 6
+    max_retries = 4
     retries = 0
     test_success = False
 
@@ -197,7 +197,11 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
         retries += 1
 
     if retries == max_retries:
-        allure.attach(f"❌ Test '{test_name}' failed after {max_retries} attempts.")
+        failure_message = f"❌ Test '{test_name}' failed after {max_retries} attempts."
+        logging.error(failure_message)
+        allure.attach(failure_message, name="Test Failure", attachment_type=allure.attachment_type.TEXT)
+        allure.dynamic.description(failure_message)
+        pytest.fail(failure_message)
 
 
 
