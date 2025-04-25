@@ -109,7 +109,7 @@ jobs:
           mkdir temp_deploy
           mv index.html temp_deploy/
 
-      # 🚀 Deploy Allure Report and Updated Index to GitHub Pages
+      # Deploy Allure Report and Index to GitHub Pages
       - name: Deploy Allure Report and Index to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -122,9 +122,6 @@ jobs:
           user_email: github-actions@github.com
           enable_jekyll: false
           keep_files: true # Preserve existing files and subdirectories
-        run: |
-          # Move index.html to the root of the allure-report directory
-          mv index.html allure-report/
 
       
         # 🔗 Output the Allure Report URL
