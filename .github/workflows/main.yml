@@ -144,6 +144,7 @@ jobs:
 
       # 🔖 Metadata extra opcional
       - name: Set current date as env variable
+        if: always()
         run: |
           echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
           echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
