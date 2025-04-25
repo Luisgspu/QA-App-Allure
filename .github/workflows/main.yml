@@ -46,18 +46,14 @@ jobs:
 
       # 🧠 Copiar historial a allure-results
       - name: Copy Allure history
+        if: always()
         run: |
           mkdir -p allure-results/history
           if [ -d gh-pages/history ]; then
-            cp -r gh-pages/history/* allure-results/history || echo "No previous history"
+            cp -r gh-pages/history/* allure-results/history || echo "No previous history found"
+          else
+            echo "No gh-pages/history directory found"
           fi
-
-      - name: Debug Allure history
-        run: ls -la allure-results/history || echo "No history found"
-
-      - name: Debug CPU cores
-        run: |
-          echo "Number of CPUs: $(nproc)"
 
       # ▶️ Ejecutar tests con Allure
       - name: Run tests scripts directly

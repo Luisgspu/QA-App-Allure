@@ -179,79 +179,30 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 manual_test_cases = [
     
     
-    {
-        "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
-        "model_code": "A236",
-       
 
-    },
     
     {
         "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
+        "market_code": "FR/fr",
         "model_code": "V223",
        
 
     },
     
-    {
-        "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
-        "model_code": "W247-fl",
-       
-
-    },
     
-    {
-        "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
-        "model_code": "X118-fl",
-       
-
-    },
     
     {
         "test_name": "Last Seen SRP",
-        "market_code": "AT/de",
+        "market_code": "FR/fr",
         "model_code": "A236",
        
 
     },
-    
-    {
-        "test_name": "Last Seen SRP",
-        "market_code": "AT/de",
-        "model_code": "V223",
-       
-
-    },
-    
-    {
-        "test_name": "Last Seen SRP",
-        "market_code": "AT/de",
-        "model_code": "W247-fl",
-       
-
-    },
-    
-    {
-        "test_name": "Last Seen SRP",
-        "market_code": "AT/de",
-        "model_code": "X118-fl",
-       
-
-    },
-    
-
 
     
     
     
-    
-    
-    
-    
+
     
 ]
 
