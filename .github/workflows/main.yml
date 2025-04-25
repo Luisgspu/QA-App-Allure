@@ -105,6 +105,12 @@ jobs:
           mkdir temp_deploy
           mv index.html temp_deploy/
 
+      # Copy the new history folder to the root of gh-pages for future runs
+      - name: Copy Allure history to gh-pages
+        if: always()
+        run: |
+          cp -r allure-report/history gh-pages/history    
+
       # Deploy Allure Report and Index to GitHub Pages
       - name: Deploy Allure Report and Index to GitHub Pages
         if: always()
@@ -118,9 +124,7 @@ jobs:
           user_email: github-actions@github.com
           enable_jekyll: false
           keep_files: true # Preserve existing files and subdirectories
-        run: |
-          # Copy the new history folder to the root of gh-pages for future runs
-          cp -r allure-report/history gh-pages/history  
+        
 
       
         # 🔗 Output the Allure Report URL
