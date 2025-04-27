@@ -14,11 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # 📥 Checkout código
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 🛠️ Set up Python + install deps
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -34,16 +32,15 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
 
-      # 📥 Descargar previous allure-results artifact (historial)
       - name: Download previous allure-results artifact
         uses: dawidd6/action-download-artifact@v2
+        continue-on-error: true
         with:
           name: allure-results
           workflow: Main Event Workflow — DEV Environment
           path: previous-allure-results
           if_no_artifact_found: ignore
 
-      # 🧠 Merge previous results
       - name: Merge previous allure-results
         run: |
           mkdir -p allure-results
@@ -51,20 +48,17 @@ jobs:
             cp -r previous-allure-results/* allure-results/ || echo "No previous results found."
           fi
 
-      # ▶️ Ejecutar tests
       - name: Run tests scripts directly
         if: always()
         run: |
           poetry run pytest QAAppAllure.py -n auto -s -v --reruns 3 --alluredir=allure-results
 
-      # 🛠️ Generar reporte Allure (mezclando viejo y nuevo)
       - name: Generate Allure Report
         if: always()
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
 
-      # 📦 Subir allure-results para el siguiente run
       - name: Upload Allure raw results
         if: always()
         uses: actions/upload-artifact@v4
@@ -72,60 +66,34 @@ jobs:
           name: allure-results
           path: allure-results
 
-      # 📦 Subir reporte generado
-      - name: Upload Allure Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
-
-      # 🔄 Crear index.html para redirect
-      - name: Create index.html for latest report
+      # 👇 Aquí insertamos el index.html dentro de allure-report/
+      - name: Create index.html for latest report inside allure-report
         if: always()
         run: |
-          mkdir temp_deploy
-          echo '<!DOCTYPE html>' > temp_deploy/index.html
-          echo '<html>' >> temp_deploy/index.html
-          echo '  <head>' >> temp_deploy/index.html
-          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> temp_deploy/index.html
-          echo '    <title>Redirecting to Latest Allure Report</title>' >> temp_deploy/index.html
-          echo '  </head>' >> temp_deploy/index.html
-          echo '  <body>' >> temp_deploy/index.html
-          echo '    <p>Redirecting to the latest report...</p>' >> temp_deploy/index.html
-          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> temp_deploy/index.html
-          echo '  </body>' >> temp_deploy/index.html
-          echo '</html>' >> temp_deploy/index.html
+          echo '<!DOCTYPE html>' > allure-report/index.html
+          echo '<html>' >> allure-report/index.html
+          echo '  <head>' >> allure-report/index.html
+          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> allure-report/index.html
+          echo '    <title>Redirecting to Latest Allure Report</title>' >> allure-report/index.html
+          echo '  </head>' >> allure-report/index.html
+          echo '  <body>' >> allure-report/index.html
+          echo '    <p>Redirecting to the latest report...</p>' >> allure-report/index.html
+          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> allure-report/index.html
+          echo '  </body>' >> allure-report/index.html
+          echo '</html>' >> allure-report/index.html
 
-      # 🚀 Deploy Allure Report al subfolder del run
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Deploy Allure Report and Index to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
-          destination_dir: ${{ github.run_number }}
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
           keep_files: true
 
-      # 🚀 Deploy index.html al root para redirect
-      - name: Deploy index.html to GitHub Pages Root
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: temp_deploy
-          destination_dir: .
-          user_name: github-actions
-          user_email: github-actions@github.com
-          enable_jekyll: false
-          keep_files: true
-
-      # 🔗 Mostrar URL del reporte
       - name: Provide Allure Report URL
         if: always()
         run: |
