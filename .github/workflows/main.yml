@@ -14,14 +14,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # Checkout del repo principal
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Setear Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.13
 
+      # Instalar dependencias
       - name: Install Poetry and dependencies
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
@@ -29,9 +32,11 @@ jobs:
           poetry add pytest-rerunfailures
           poetry install --no-root
 
+      # Setear PYTHONPATH
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
 
+      # Descargar historial anterior de resultados
       - name: Download previous allure-results artifact
         uses: dawidd6/action-download-artifact@v2
         continue-on-error: true
@@ -41,6 +46,7 @@ jobs:
           path: previous-allure-results
           if_no_artifact_found: ignore
 
+      # Mezclar resultados anteriores con los nuevos
       - name: Merge previous allure-results
         run: |
           mkdir -p allure-results
@@ -48,17 +54,20 @@ jobs:
             cp -r previous-allure-results/* allure-results/ || echo "No previous results found."
           fi
 
+      # Correr tests
       - name: Run tests scripts directly
         if: always()
         run: |
           poetry run pytest QAAppAllure.py -n auto -s -v --reruns 3 --alluredir=allure-results
 
+      # Generar reporte Allure
       - name: Generate Allure Report
         if: always()
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
 
+      # Subir allure-results para que esté disponible en el próximo run
       - name: Upload Allure raw results
         if: always()
         uses: actions/upload-artifact@v4
@@ -66,37 +75,41 @@ jobs:
           name: allure-results
           path: allure-results
 
-      # 👇 Aquí insertamos el index.html dentro de allure-report/
-      - name: Create index.html for latest report inside allure-report
+      # Preparar carpeta de deploy
+      - name: Prepare deployment folder
         if: always()
         run: |
-          echo '<!DOCTYPE html>' > allure-report/index.html
-          echo '<html>' >> allure-report/index.html
-          echo '  <head>' >> allure-report/index.html
-          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> allure-report/index.html
-          echo '    <title>Redirecting to Latest Allure Report</title>' >> allure-report/index.html
-          echo '  </head>' >> allure-report/index.html
-          echo '  <body>' >> allure-report/index.html
-          echo '    <p>Redirecting to the latest report...</p>' >> allure-report/index.html
-          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> allure-report/index.html
-          echo '  </body>' >> allure-report/index.html
-          echo '</html>' >> allure-report/index.html
+          mkdir -p deploy-folder/${{ github.run_number }}
+          cp -r allure-report/* deploy-folder/${{ github.run_number }}/
 
+          # Crear el index.html
+          echo '<!DOCTYPE html>' > deploy-folder/index.html
+          echo '<html>' >> deploy-folder/index.html
+          echo '  <head>' >> deploy-folder/index.html
+          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> deploy-folder/index.html
+          echo '    <title>Redirecting to Latest Allure Report</title>' >> deploy-folder/index.html
+          echo '  </head>' >> deploy-folder/index.html
+          echo '  <body>' >> deploy-folder/index.html
+          echo '    <p>Redirecting to the latest report...</p>' >> deploy-folder/index.html
+          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> deploy-folder/index.html
+          echo '  </body>' >> deploy-folder/index.html
+          echo '</html>' >> deploy-folder/index.html
+
+      # Deployar a GitHub Pages
       - name: Deploy Allure Report and Index to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report
+          publish_dir: deploy-folder
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
           keep_files: true
 
+      # Mostrar URL del reporte
       - name: Provide Allure Report URL
         if: always()
         run: |
           echo "Allure Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ github.run_number }}"
-
-
