@@ -88,12 +88,12 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
           git fetch origin gh-pages
-          git checkout gh-pages
+          git checkout origin/gh-pages --force
           rm -rf data/ history/ widgets/ plugins/ app.js favicon.ico styles.css || true
           git add .
           git commit -m "Clean gh-pages root (pre-deploy cleanup)" || echo "Nothing to commit"
           git push origin gh-pages
-
+          
       # 🔄 Update index.html for latest report
       - name: Update index.html for latest report
         if: always()
