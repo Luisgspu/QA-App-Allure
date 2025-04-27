@@ -33,7 +33,7 @@ jobs:
         run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
 
       # 📥 Descargar historial desde gh-pages
-      - name: Get Allure history
+      - name: Get Allure previous results
         uses: actions/checkout@v4
         continue-on-error: true
         with:
@@ -44,12 +44,25 @@ jobs:
       - name: Debug gh-pages directory
         run: ls -la gh-pages || echo "No gh-pages directory found"    
 
-      # 🧠 Copiar historial a allure-results
-      - name: Copy Allure history
+      # 🔍 Buscar último run publicado
+      - name: Find latest run number
+        id: latest_run
         run: |
-          mkdir -p allure-results/history
-          if [ -d gh-pages/history ]; then
-            cp -r gh-pages/history/* allure-results/history || echo "No previous history"
+          if [ -d gh-pages ]; then
+            latest=$(ls gh-pages | grep '^[0-9]*$' | sort -n | tail -n 1 || echo "none")
+          else
+            latest="none"
+          fi
+          echo "latest_run=$latest" >> $GITHUB_ENV
+
+      # 🧠 Copiar resultados previos (data) a allure-results
+      - name: Copy previous allure-results
+        run: |
+          mkdir -p allure-results
+          if [ "$latest_run" != "none" ] && [ -d "gh-pages/$latest_run/data" ]; then
+            cp -r gh-pages/$latest_run/data/* allure-results/ || echo "No previous results to copy"
+          else
+            echo "No previous allure results found."
           fi
 
       - name: Debug Allure history
@@ -67,7 +80,8 @@ jobs:
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
-
+          
+      # 📦 Subir artifacts para debugging
       - name: Upload Allure Report
         if: always()
         uses: actions/upload-artifact@v4
