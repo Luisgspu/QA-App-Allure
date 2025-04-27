@@ -14,17 +14,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # Checkout del repo principal
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setear Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.13
 
-      # Instalar dependencias
       - name: Install Poetry and dependencies
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
@@ -32,42 +29,52 @@ jobs:
           poetry add pytest-rerunfailures
           poetry install --no-root
 
-      # Setear PYTHONPATH
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
 
-      # Descargar historial anterior de resultados
-      - name: Download previous allure-results artifact
-        uses: dawidd6/action-download-artifact@v2
+      # 📥 Descargar historial desde gh-pages
+      - name: Get Allure history
+        uses: actions/checkout@v4
         continue-on-error: true
         with:
-          name: allure-results
-          workflow: Main Event Workflow — DEV Environment
-          path: previous-allure-results
-          if_no_artifact_found: ignore
+          ref: gh-pages
+          path: gh-pages
 
-      # Mezclar resultados anteriores con los nuevos
-      - name: Merge previous allure-results
+      # 🔍 Debug gh-pages directory
+      - name: Debug gh-pages directory
+        run: ls -la gh-pages || echo "No gh-pages directory found"    
+
+      # 🧠 Copiar historial a allure-results
+      - name: Copy Allure history
         run: |
-          mkdir -p allure-results
-          if [ -d "previous-allure-results" ]; then
-            cp -r previous-allure-results/* allure-results/ || echo "No previous results found."
+          mkdir -p allure-results/history
+          if [ -d gh-pages/history ]; then
+            cp -r gh-pages/history/* allure-results/history || echo "No previous history"
           fi
 
-      # Correr tests
+      - name: Debug Allure history
+        run: ls -la allure-results/history || echo "No history found"
+
+      # ▶️ Ejecutar tests con Allure
       - name: Run tests scripts directly
         if: always()
         run: |
           poetry run pytest QAAppAllure.py -n auto -s -v --reruns 3 --alluredir=allure-results
 
-      # Generar reporte Allure
+      # 🛠️ Generar reporte con historial
       - name: Generate Allure Report
-        if: always()
+        if : always()
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
 
-      # Subir allure-results para que esté disponible en el próximo run
+      - name: Upload Allure Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+
       - name: Upload Allure raw results
         if: always()
         uses: actions/upload-artifact@v4
@@ -75,41 +82,73 @@ jobs:
           name: allure-results
           path: allure-results
 
-      # Preparar carpeta de deploy
-      - name: Prepare deployment folder
+      # 🔄 Limpiar archivos del root de gh-pages antes de deploy
+      - name: Clean unwanted files from gh-pages
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git fetch origin gh-pages
+          git checkout gh-pages
+          rm -rf data/ history/ widgets/ plugins/ app.js favicon.ico styles.css || true
+          git add .
+          git commit -m "Clean gh-pages root (pre-deploy cleanup)" || echo "Nothing to commit"
+          git push origin gh-pages
+
+      # 🔄 Update index.html for latest report
+      - name: Update index.html for latest report
         if: always()
         run: |
-          mkdir -p deploy-folder/${{ github.run_number }}
-          cp -r allure-report/* deploy-folder/${{ github.run_number }}/
+          echo '<!DOCTYPE html>' > index.html
+          echo '<html>' >> index.html
+          echo '  <head>' >> index.html
+          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> index.html
+          echo '    <title>Redirecting to Latest Allure Report</title>' >> index.html
+          echo '  </head>' >> index.html
+          echo '  <body>' >> index.html
+          echo '    <p>Redirecting to the latest report...</p>' >> index.html
+          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> index.html
+          echo '  </body>' >> index.html
+          echo '</html>' >> index.html
 
-          # Crear el index.html
-          echo '<!DOCTYPE html>' > deploy-folder/index.html
-          echo '<html>' >> deploy-folder/index.html
-          echo '  <head>' >> deploy-folder/index.html
-          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> deploy-folder/index.html
-          echo '    <title>Redirecting to Latest Allure Report</title>' >> deploy-folder/index.html
-          echo '  </head>' >> deploy-folder/index.html
-          echo '  <body>' >> deploy-folder/index.html
-          echo '    <p>Redirecting to the latest report...</p>' >> deploy-folder/index.html
-          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> deploy-folder/index.html
-          echo '  </body>' >> deploy-folder/index.html
-          echo '</html>' >> deploy-folder/index.html
+      # 🚀 Deploy Updated Index to Root of GitHub Pages
+      - name: Move index.html to temporary directory
+        if: always()
+        run: |
+          mkdir temp_deploy
+          mv index.html temp_deploy/
 
-      # Deployar a GitHub Pages
+      # Copy the new history folder to the root of gh-pages for future runs
+      - name: Copy Allure history to gh-pages
+        if: always()
+        run: |
+          cp -r allure-report/history gh-pages/history    
+
+      # Deploy Allure Report and Index to GitHub Pages
       - name: Deploy Allure Report and Index to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: deploy-folder
+          publish_dir: allure-report # Deploy the entire allure-report directory
+          destination_dir: ${{ github.run_number }} # Deploy report to subdirectory
           user_name: github-actions
           user_email: github-actions@github.com
           enable_jekyll: false
-          keep_files: true
+          keep_files: true # Preserve existing files and subdirectories
+        
 
-      # Mostrar URL del reporte
+      # 🔗 Output the Allure Report URL
       - name: Provide Allure Report URL
         if: always()
         run: |
           echo "Allure Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ github.run_number }}"
+
+      # 🔖 Metadata extra opcional
+      - name: Set current date as env variable
+        if: always()
+        run: |
+          echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
+          echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
+          echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
+          echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
