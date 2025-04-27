@@ -181,7 +181,7 @@ manual_test_cases = [
     
     {
         "test_name": "Last Seen SRP",
-        "market_code": "DE/de",
+        "market_code": "IT/it",
         "model_code": "A236",
        
 
