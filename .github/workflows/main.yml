@@ -14,14 +14,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # 🛠️ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 🐍 Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.13
 
+      # 📦 Install Poetry and dependencies
       - name: Install Poetry and dependencies
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
@@ -29,6 +32,7 @@ jobs:
           poetry add pytest-rerunfailures
           poetry install --no-root
 
+      # 🔧 Set PYTHONPATH
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
 
@@ -42,7 +46,7 @@ jobs:
 
       # 🔍 Debug gh-pages directory
       - name: Debug gh-pages directory
-        run: ls -la gh-pages || echo "No gh-pages directory found"    
+        run: ls -la gh-pages || echo "No gh-pages directory found"
 
       # 🧠 Copiar historial a allure-results
       - name: Copy Allure history
@@ -52,9 +56,6 @@ jobs:
             cp -r gh-pages/history/* allure-results/history || echo "No previous history"
           fi
 
-      - name: Debug Allure history
-        run: ls -la allure-results/history || echo "No history found"
-
       # ▶️ Ejecutar tests con Allure
       - name: Run tests scripts directly
         if: always()
@@ -63,11 +64,12 @@ jobs:
 
       # 🛠️ Generar reporte con historial
       - name: Generate Allure Report
-        if : always()
+        if: always()
         run: |
           npm install -g allure-commandline --save-dev
           allure generate allure-results -o allure-report --clean
 
+      # 🖼️ Subir Allure Report como artifact
       - name: Upload Allure Report
         if: always()
         uses: actions/upload-artifact@v4
@@ -75,6 +77,7 @@ jobs:
           name: allure-report
           path: allure-report
 
+      # 📦 Subir resultados de Allure como artifact
       - name: Upload Allure raw results
         if: always()
         uses: actions/upload-artifact@v4
@@ -82,18 +85,6 @@ jobs:
           name: allure-results
           path: allure-results
 
-      # 🔄 Limpiar archivos del root de gh-pages antes de deploy
-      - name: Clean unwanted files from gh-pages
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "github-actions"
-          git fetch origin gh-pages
-          git checkout origin/gh-pages --force
-          rm -rf data/ history/ widgets/ plugins/ app.js favicon.ico styles.css || true
-          git add .
-          git commit -m "Clean gh-pages root (pre-deploy cleanup)" || echo "Nothing to commit"
-          git push origin gh-pages
-          
       # 🔄 Update index.html for latest report
       - name: Update index.html for latest report
         if: always()
@@ -110,20 +101,14 @@ jobs:
           echo '  </body>' >> index.html
           echo '</html>' >> index.html
 
-      # 🚀 Deploy Updated Index to Root of GitHub Pages
+      # 🚀 Move index.html to temporary directory for deployment
       - name: Move index.html to temporary directory
         if: always()
         run: |
           mkdir temp_deploy
           mv index.html temp_deploy/
 
-      # Copy the new history folder to the root of gh-pages for future runs
-      - name: Copy Allure history to gh-pages
-        if: always()
-        run: |
-          cp -r allure-report/history gh-pages/history    
-
-      # Deploy Allure Report and Index to GitHub Pages
+      # 👨‍💻 Deploy Allure Report and Index to GitHub Pages
       - name: Deploy Allure Report and Index to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -136,9 +121,8 @@ jobs:
           user_email: github-actions@github.com
           enable_jekyll: false
           keep_files: true # Preserve existing files and subdirectories
-        
 
-      # 🔗 Output the Allure Report URL
+      # 🔗 Provide Allure Report URL
       - name: Provide Allure Report URL
         if: always()
         run: |
