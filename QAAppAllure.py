@@ -187,6 +187,14 @@ manual_test_cases = [
 
     },
     
+    {
+        "test_name": "BFV1",
+        "market_code": "IT/it",
+        "model_code": "A236",
+       
+
+    },
+    
 
     
 
