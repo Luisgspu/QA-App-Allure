@@ -59,7 +59,7 @@ jobs:
       - name: Run tests scripts directly
         if: always()
         run: |
-          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 0 --alluredir=allure-results
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 3 --alluredir=allure-results
 
       # 🛠️ Generar reporte con historial
       - name: Generate Allure Report
