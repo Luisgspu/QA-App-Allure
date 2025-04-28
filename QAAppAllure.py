@@ -142,8 +142,10 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
         logging.error(f"❌ Error navigating to HOME_PAGE: {e}")
         pytest.fail(f"Error navigating to HOME_PAGE: {e}")
 
+    
+    
     try:
-        WebDriverWait(driver, 6).until(
+        WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "cmm-cookie-banner"))
         )
         time.sleep(2)
@@ -178,20 +180,16 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 # Manually defined test cases
 manual_test_cases = [
     
+  
     
-
-    
-
-    
-   
     {
         "test_name": "BFV1",
-        "market_code": "DE/de",
-        "model_code": "A236",
+        "market_code": "AT/de",
+        "model_code": "S206-fl"
        
-
     },
     
+
     
     
 
