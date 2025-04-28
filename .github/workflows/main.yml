@@ -1,0 +1,79 @@
+name: Allure Report Workflow
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - rerun
+  workflow_dispatch:    
+  
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install Poetry and dependencies
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          poetry add pytest-rerunfailures
+          poetry install --no-root
+
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV    
+
+      - name: Run tests scripts directly
+        run: |
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 5 --reruns-delay 1 --alluredir=allure-results
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages-dir
+
+      - name: Allure Report Action
+        uses: mgrybyk-org/allure-report-branch-action@v1
+        id: allure
+        with:
+          report_id: '${{ github.ref_name }}-${{ github.run_number }}'
+          gh_pages: 'gh-pages-dir'
+          report_dir: 'allure-results'
+
+      - name: Git Commit and Push Action
+        uses: mgrybyk-org/git-commit-pull-push-action@v1
+        with:
+          repository: gh-pages-dir
+          branch: gh-pages
+
+      # Comentar en el Pull Request solo si el evento es un pull_request
+      - name: Comment PR with Allure Report link
+        if: ${{ github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | [History](${{ steps.allure.outputs.report_history_url }})
+          comment_tag: allure_report
+          mode: recreate
+
+      # Registrar el enlace del reporte en los logs si el evento es un push
+      - name: Log Allure Report URL
+        if: ${{ github.event_name == 'push' && steps.allure.outputs.report_url }}
+        run: |
+          echo "Allure Report URL: ${{ steps.allure.outputs.report_url }}"
+          echo "Allure Report History URL: ${{ steps.allure.outputs.report_history_url }}"
+
+      # Probando nuevo workflo
