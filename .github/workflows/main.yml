@@ -1,74 +1,60 @@
+name: Allure Report Workflow
+
 on:
   push:
     branches:
       - main
-      - rerun
-  workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: write
-
-env:
-  TEST_EXECUTION_ENV: dev
+  pull-requests: write
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.13
 
-      - name: Install Poetry and dependencies
+      - name: Install dependencies
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-          poetry add pytest-rerunfailures
-          poetry install --no-root
+          pip install pytest allure-pytest
 
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
-
-      # ▶️ Ejecutar tests con Allure
-      - name: Run tests scripts directly
+      - name: Run tests
         run: |
-          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 5 --alluredir=allure-results
+          pytest --alluredir=allure-results
 
-      # 📥 Descargar historial desde gh-pages
       - name: Checkout gh-pages
         uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
         with:
-          ref: gh-pages # branch name
-          path: gh-pages-dir # checkout path
+          ref: gh-pages
+          path: gh-pages-dir
 
-      # 🛠️ Generar reporte con historial
       - name: Allure Report Action
         uses: mgrybyk-org/allure-report-branch-action@v1
-        if: always()
-        continue-on-error: true
-        id: allure # used in comment to PR
+        id: allure
         with:
-          report_id: 'self-test' # Unique ID for the report
-          gh_pages: 'gh-pages-dir' # Path to the gh-pages branch
-          report_dir: 'allure-results' # Path to the allure results directory
+          report_id: '${{ github.run_id }}'
+          gh_pages: 'gh-pages-dir'
+          report_dir: 'allure-results'
 
-      # 🚀 Commit y Push del Reporte
       - name: Git Commit and Push Action
         uses: mgrybyk-org/git-commit-pull-push-action@v1
-        if: always()
         with:
           repository: gh-pages-dir
           branch: gh-pages
-          pull_args: --rebase -X ours
 
-      # 🔗 Output the Allure Report URL
-      - name: Provide Allure Report URL
-        if: always()
-        run: |
-          echo "Allure Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/self-test"
+      - name: Comment PR with Allure Report link
+        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | [History](${{ steps.allure.outputs.report_history_url }})
+          comment_tag: allure_report
+          mode: recreate
