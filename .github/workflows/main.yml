@@ -75,3 +75,5 @@ jobs:
         run: |
           echo "Allure Report URL: ${{ steps.allure.outputs.report_url }}"
           echo "Allure Report History URL: ${{ steps.allure.outputs.report_history_url }}"
+
+      # Probando nuevo workflow
