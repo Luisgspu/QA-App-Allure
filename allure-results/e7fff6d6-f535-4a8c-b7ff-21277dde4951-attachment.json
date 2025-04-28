@@ -1,0 +1,64 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_germany_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwiY29udGVudFpvbmVzIjpbXSwidXJsIjoiaHR0cHM6Ly93d3cubWVyY2VkZXMtYmVuei5kZS8iLCJ1cmxSZWZlcnJlciI6IiIsImNoYW5uZWwiOiJXZWIiLCJiZWFjb25WZXJzaW9uIjoxNiwiY29uZmlnVmVyc2lvbiI6IjMzNSJ9LCJmbGFncyI6eyJwYWdlVmlldyI6dHJ1ZX0sInVzZXIiOnsiYXR0cmlidXRlcyI6eyJnYUNsaWVudElEIjoiMTIwMDA4NDQ4LjE3NDU4MjA3MTEifSwiYW5vbklkIjoiYjBhY2I4NzQ2NzYzZDQxMiJ9LCJwZXJmb3JtYW5jZSI6e30sImRlYnVnIjp7ImV4cGxhbmF0aW9ucyI6dHJ1ZX0sImNhdGFsb2ciOnt9LCJjb25zZW50cyI6W10sImFjY291bnQiOnt9LCJfdG9vbHNFdmVudExpbmtJZCI6IjQxNDE3NTMxNDMwMDA0MjYifQ%3D%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "ROcDE",
+                "campaignName": "best-fitting-vehicle | all models | home | simple-teaser and stage and campaign module",
+                "campaignType": "Web",
+                "experienceId": "kAQZs",
+                "experienceName": "Target",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Jetzt verfügbare Fahrzeuge finden.",
+                    "onlineShop_label": "",
+                    "experience": "kAQZs",
+                    "phase3_primaryBtn": "Verfügbare Fahrzeuge anzeigen",
+                    "activate_phase2": true,
+                    "overwrite_content": false,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Entdecken Sie sofort verfügbare Fahrzeuge.",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": true,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Fahrzeug konfigurieren",
+                    "phase1_copy": "Konfigurieren Sie jetzt Ihr Wunschfahrzeug.",
+                    "phase3_secondaryBtn": "Probefahrt buchen",
+                    "highest_affinity": {
+                        "car": "2364",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "Mehr erfahren",
+                    "phase1_secondaryBtn": "Mehr erfahren",
+                    "campaign": "ROcDE",
+                    "phase2_primaryBtn": "Verfügbare Fahrzeuge anzeigen",
+                    "vehicles_overwrite": null,
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
