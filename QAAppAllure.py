@@ -183,34 +183,27 @@ manual_test_cases = [
   
     
     {
-        "test_name": "BFV1",
+        "test_name": "BFV2",
         "market_code": "AT/de",
-        "moedel_code": "V223",
-       
        
     },
+    
     {
-        "test_name": "BFV1",
+        "test_name": "BFV3",
         "market_code": "AT/de",
-        "moedel_code": "W214",
-       
        
     },
+    
     {
-        "test_name": "BFV1",
+        "test_name": "Last Seen SRP",
         "market_code": "AT/de",
-        "moedel_code": "Z223",
-       
        
     },
     
-    
-    
-    
-    
-    
+   
 
-    
+
+
     
 
     
