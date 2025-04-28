@@ -1,11 +1,13 @@
 name: Allure Report Workflow
 
 on:
+  pull_request:
   push:
     branches:
       - main
       - rerun
-  pull_request:
+  workflow_dispatch:    
+  
 
 permissions:
   contents: write
