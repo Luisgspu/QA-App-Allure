@@ -23,13 +23,19 @@ jobs:
         with:
           python-version: 3.13
 
-      - name: Install dependencies
+      - name: Install Poetry and dependencies
         run: |
-          pip install pytest allure-pytest
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          poetry add pytest-rerunfailures
+          poetry install --no-root
 
-      - name: Run tests
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV    
+
+      - name: Run tests scripts directly
         run: |
-          pytest --alluredir=allure-results
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 5 --alluredir=allure-results
 
       - name: Checkout gh-pages
         uses: actions/checkout@v3
