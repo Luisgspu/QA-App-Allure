@@ -37,7 +37,8 @@ jobs:
 
       - name: Run tests scripts directly
         run: |
-          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 5 --alluredir=allure-results
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 5 --reruns-delay 1 --alluredir=allure-results
+
 
       - name: Checkout gh-pages
         uses: actions/checkout@v3
@@ -49,7 +50,7 @@ jobs:
         uses: mgrybyk-org/allure-report-branch-action@v1
         id: allure
         with:
-          report_id: '${{ github.ref_name }}-${{ github.run_id }}'
+          report_id: '${{ github.ref_name }}-${{ github.run_number }}'
           gh_pages: 'gh-pages-dir'
           report_dir: 'allure-results'
 
