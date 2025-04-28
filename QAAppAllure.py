@@ -191,9 +191,9 @@ manual_test_cases = [
     },
     
     {
-        "test_name": "BFV1",
+        "test_name": "Last Seen SRP",
         "market_code": "AT/de",
-        "model_code": "X254",
+        "model_code": "C236",
        
     },
     
