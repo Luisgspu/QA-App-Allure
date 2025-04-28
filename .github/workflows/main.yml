@@ -47,7 +47,7 @@ jobs:
         uses: mgrybyk-org/allure-report-branch-action@v1
         id: allure
         with:
-          report_id: '${{ github.run_id }}'
+          report_id: '${{ github.ref_name }}-${{ github.run_id }}'
           gh_pages: 'gh-pages-dir'
           report_dir: 'allure-results'
 
