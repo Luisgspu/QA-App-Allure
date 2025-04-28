@@ -185,9 +185,34 @@ manual_test_cases = [
     {
         "test_name": "BFV1",
         "market_code": "AT/de",
-        "model_code": "S206-fl"
+        "model_code": "S206"
        
     },
+    
+    
+    {
+        "test_name": "BFV1",
+        "market_code": "AT/de",
+        "model_code": "C167-fl"
+       
+    },
+    
+    {
+        "test_name": "BFV1",
+        "market_code": "AT/de",
+        "model_code": "V223"
+       
+    },
+    
+    {
+        "test_name": "BFV1",
+        "market_code": "AT/de",
+        "model_code": "W247-fl"
+       
+    },
+    
+    
+    
     
 
     
