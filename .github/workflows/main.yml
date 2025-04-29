@@ -62,18 +62,18 @@ jobs:
           allure_history: allure-history
           keep_reports: 30
 
-        - name: Update index.html with all reports
-          if: always()
-          run: |
-            REPORTS_DIR="gh-pages"
-            INDEX_FILE="$REPORTS_DIR/index.html"
-            mkdir -p $REPORTS_DIR
-            echo "<html><body><h1>Allure Reports</h1><ul>" > $INDEX_FILE
-            for dir in $(ls -d $REPORTS_DIR/*/ 2>/dev/null); do
-              REPORT_NAME=$(basename $dir)
-              echo "<li><a href='$REPORT_NAME/index.html'>Report: $REPORT_NAME</a></li>" >> $INDEX_FILE
-            done
-            echo "</ul></body></html>" >> $INDEX_FILE    
+      - name: Update index.html with all reports
+        if: always()
+        run: |
+          REPORTS_DIR="gh-pages"
+          INDEX_FILE="$REPORTS_DIR/index.html"
+          mkdir -p $REPORTS_DIR
+          echo "<html><body><h1>Allure Reports</h1><ul>" > $INDEX_FILE
+          for dir in $(ls -d $REPORTS_DIR/*/ 2>/dev/null); do
+            REPORT_NAME=$(basename $dir)
+            echo "<li><a href='$REPORT_NAME/index.html'>Report: $REPORT_NAME</a></li>" >> $INDEX_FILE
+          done
+          echo "</ul></body></html>" >> $INDEX_FILE    
 
       - name: Deploy report to Github Pages
         if: always()
