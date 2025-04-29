@@ -62,7 +62,6 @@ jobs:
           allure_history: allure-history
           keep_reports: 30
 
-      
       - name: Deploy report to Github Pages
         if: always()
         continue-on-error: true
