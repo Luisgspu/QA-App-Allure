@@ -61,15 +61,15 @@ jobs:
           allure_history: allure-history
           keep_reports: 30
 
-      - name: Generate enhanced index.html for historical reports
-        if: always()
+      - name: Generate index.html for historical reports
         run: |
+          mkdir -p gh-pages
           echo "<html><head><title>Allure Reports</title></head>" > gh-pages/index.html
           echo "<body><h1>Allure Reports</h1>" >> gh-pages/index.html
           echo "<table border='1' style='border-collapse: collapse; width: 100%; text-align: center;'>" >> gh-pages/index.html
           echo "<tr><th>Run Number</th><th>Date</th><th>Time</th><th>Link</th></tr>" >> gh-pages/index.html
           for dir in $(ls gh-pages); do
-            if [ -d "gh-pages/$dir" ] && [ "$dir" != "allure-history" ] && [ "$dir" != "last-history" ]; then
+            if [ -d "gh-pages/$dir" ]; then
               RUN_NUMBER=$dir
               DATE=$(date -r gh-pages/$dir "+%Y-%m-%d")
               TIME=$(date -r gh-pages/$dir "+%H:%M:%S")
@@ -85,4 +85,6 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+          PUBLISH_DIR: gh-pages
+
+            
