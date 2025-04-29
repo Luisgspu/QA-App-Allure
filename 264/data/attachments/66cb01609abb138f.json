@@ -1,0 +1,64 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_denmark_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiZGFfREsiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LmRrLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjQifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjExOTAxODg0ODguMTc0NTk2NzYxOSJ9LCJhbm9uSWQiOiJkODJiNzNmYTkyMzQwMWU1In0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiNDE3OTY5NDk4OTM2MTEwNiJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "SJ3uc",
+                "campaignName": "best-fitting-vehicle | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "MCVPU",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Se tilgængelige biler eller book en prøvetur.",
+                    "experience": "MCVPU",
+                    "phase3_primaryBtn": "Til Online Showroom",
+                    "activate_phase2": true,
+                    "overwrite_content": false,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Se tilgængelige biler i Online Showroom.",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": false,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Konfigurér din bil",
+                    "phase1_copy": "Konfigurér din drømmebil nu.",
+                    "phase3_secondaryBtn": "Book prøvetur",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "Læs mere",
+                    "phase1_secondaryBtn": "Læs mere",
+                    "campaign": "SJ3uc",
+                    "phase2_primaryBtn": "Se aktuelle tilbud",
+                    "onlineShop_label": "",
+                    "vehicles_overwrite": null,
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

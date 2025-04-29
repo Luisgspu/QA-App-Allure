@@ -1,0 +1,72 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_netherlands_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoibmxfTkwiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56Lm5sLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNTYifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjE4OTY4ODQxNDEuMTc0NTk2NzQ0MSJ9LCJhbm9uSWQiOiI0YmU4NzE3YjJkNDNhZjkyIn0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiNjQ3Njc5MzU1MTkyMjk1OSJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "7wJKi",
+                "campaignName": "best-fitting-vehicle | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "EMwq6",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Ontdek onze beschikbare modellen of boek een proefrit.",
+                    "onlineShop_label": "",
+                    "experience": "EMwq6",
+                    "phase3_primaryBtn": "Aanbiedingen ontdekken",
+                    "activate_phase2": true,
+                    "overwrite_content": true,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Ontdek onze direct beschikbare modellen.",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Configureer nu",
+                    "vehicles_overwrite": [
+                        {
+                            "block_phase1": false,
+                            "block_phase2": false,
+                            "block_phase3": false,
+                            "baumuster": "2230",
+                            "headline": "S-Klasse Limousine",
+                            "pi_page": "/passengercars/models/saloon/s-class/overview.html"
+                        }
+                    ],
+                    "phase1_copy": "Configureer nu de auto van uw dromen.",
+                    "phase3_secondaryBtn": "Proefrit boeken",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "Meer weten",
+                    "phase1_secondaryBtn": "Meer weten",
+                    "campaign": "7wJKi",
+                    "phase2_primaryBtn": "Ontdek de Online Showroom",
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

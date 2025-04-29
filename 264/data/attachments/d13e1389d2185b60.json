@@ -1,0 +1,64 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_romania_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoicm9fUk8iLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LnJvLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjYifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6Ijc2NjQ0NTU3OC4xNzQ1OTY3NTk0In0sImFub25JZCI6IjZjNzYwZGIzZDQwYWI0NDAifSwicGVyZm9ybWFuY2UiOnt9LCJkZWJ1ZyI6eyJleHBsYW5hdGlvbnMiOnRydWV9LCJjYXRhbG9nIjp7fSwiY29uc2VudHMiOltdLCJhY2NvdW50Ijp7fSwiX3Rvb2xzRXZlbnRMaW5rSWQiOiIxODI1NzIxNzQ2ODAyNTYzMyJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "Xzh29",
+                "campaignName": "best-fitting-vehicle | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "XxJ8G",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Descoperă ofertele sau rezervă un test-drive",
+                    "experience": "XxJ8G",
+                    "phase3_primaryBtn": "Descoperă ofertele",
+                    "activate_phase2": true,
+                    "overwrite_content": false,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Descoperă autovehicule disponibile imediat.",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": false,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Configurează-ți autovehiculul",
+                    "phase1_copy": "Configurează-ți autovehiculul de vis acum.",
+                    "phase3_secondaryBtn": "Programează un test-drive",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "Află mai multe",
+                    "phase1_secondaryBtn": "Află mai multe",
+                    "campaign": "Xzh29",
+                    "phase2_primaryBtn": "Descoperă ofertele",
+                    "onlineShop_label": "",
+                    "vehicles_overwrite": null,
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

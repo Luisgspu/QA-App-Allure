@@ -1,0 +1,64 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_luxembourg_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiZnJfTFUiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56Lmx1L2ZyIiwidXJsUmVmZXJyZXIiOiIiLCJjaGFubmVsIjoiV2ViIiwiYmVhY29uVmVyc2lvbiI6MTYsImNvbmZpZ1ZlcnNpb24iOiI1NCJ9LCJmbGFncyI6eyJwYWdlVmlldyI6dHJ1ZX0sInVzZXIiOnsiYXR0cmlidXRlcyI6eyJnYUNsaWVudElEIjoiMTAwMTMwNzQ0MS4xNzQ1OTY3NDA0In0sImFub25JZCI6IjNjNDc0MzVlYzdkM2NkZDYifSwicGVyZm9ybWFuY2UiOnt9LCJkZWJ1ZyI6eyJleHBsYW5hdGlvbnMiOnRydWV9LCJjYXRhbG9nIjp7fSwiY29uc2VudHMiOltdLCJhY2NvdW50Ijp7fSwiX3Rvb2xzRXZlbnRMaW5rSWQiOiIwNTAyNzc4Njk1NDM0OTczMyJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "glRCh",
+                "campaignName": "best-fitting-vehicle | fr | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "Pdi3z",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Découvrez nos véhicules et réservez un essai.",
+                    "experience": "Pdi3z",
+                    "phase3_primaryBtn": "Trouvez un véhicule neuf en stock",
+                    "activate_phase2": true,
+                    "overwrite_content": false,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Découvrez nos véhicules neufs disponibles.",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": false,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Configurez votre véhicule",
+                    "phase1_copy": "Configurez le véhicule de vos rêves.",
+                    "phase3_secondaryBtn": "Réservez un essai",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "En savoir plus",
+                    "phase1_secondaryBtn": "En savoir plus",
+                    "campaign": "glRCh",
+                    "phase2_primaryBtn": "Trouvez un véhicule neuf en stock",
+                    "onlineShop_label": "",
+                    "vehicles_overwrite": null,
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+ERROR    root:test_LastConfigCompleted.py:97 ❌ Error in configurator: Message: element click intercepted: Element <a _ngcontent-ng-c2521831864="" queryparamshandling="merge" rel="nofollow" class="cc-navigation__button cc-navigation__group" navigation-menu-item-data-id="/configuration/CCci/RO/ro/ro_RO__1743131__AJ-055_AU-301_LE-L_LU-696_MJ-805_PC-P49-P59-PDA_SA-219-294-325-329-33B-351-365-367-370-3K0-3K1-416-458-46U-475-485-4B7-4U1-51U-530-537-546-580-583-59H-5B9-608-632-63B-693-70B-72B-7U2-82B-868-873-88B-968-986-989-9B6-B51-B53-K33-K34-K50-K53-K54-K55-K56-K57-K58-K59-K60-K61-K62-K64-L3E-R05-R22-U0B-U10-U12-U20-U22-U23-U60_SC-0K0-0S9-0U1-10W-11W-12W-13W-17W-18W-1B3-20W-25W-27V-28W-29W-2S3-2U1-2U8-31W-3B9-4B1-502-51B-5S4-6B8-6P5-7B4-7S3-7S8-8K0-8S5-8S8-8U8-998-AZ1-BAG-EMS-K12-PVM-R8D-SCH/paints">...</a> is not clickable at point (126, 223). Other element would receive the click: <cmm-cookie-banner settings-id="CsNchVdpv" variant="A" data-language="ro" data-market="RO" class="hydrated" data-workbench-version="7.67.0"></cmm-cookie-banner>
+  (Session info: chrome=135.0.7049.95)
+Stacktrace:
+#0 0x5604dc60acea <unknown>
+#1 0x5604dc0bb5f0 <unknown>
+#2 0x5604dc11387c <unknown>
+#3 0x5604dc1116dc <unknown>
+#4 0x5604dc10ed72 <unknown>
+#5 0x5604dc10e467 <unknown>
+#6 0x5604dc100b3d <unknown>
+#7 0x5604dc132662 <unknown>
+#8 0x5604dc1004ba <unknown>
+#9 0x5604dc13282e <unknown>
+#10 0x5604dc158660 <unknown>
+#11 0x5604dc132433 <unknown>
+#12 0x5604dc0feea3 <unknown>
+#13 0x5604dc0ffb01 <unknown>
+#14 0x5604dc5cfb3b <unknown>
+#15 0x5604dc5d3a21 <unknown>
+#16 0x5604dc5b6c32 <unknown>
+#17 0x5604dc5d4594 <unknown>
+#18 0x5604dc59aeef <unknown>
+#19 0x5604dc5f8d98 <unknown>
+#20 0x5604dc5f8f76 <unknown>
+#21 0x5604dc609b36 <unknown>
+#22 0x7f38bfe9caa4 <unknown>
+#23 0x7f38bff29c3c <unknown>
+
+ERROR    root:VerifyPersonalizationAndCapture.py:111 ❌ Image not found in the specified selector. Error: Message: 
+
+ERROR    root:VerifyPersonalizationAndCapture.py:18 ❌ Error attaching screenshot to Allure: [Errno 2] No such file or directory: '/home/runner/work/QA-App-Allure/QA-App-Allure/Tests/Last Configuration Completed_attempt_2.png'
+ERROR    root:QAAppAllure.py:174 ❌ Test 'Last Configuration Completed' failed.

@@ -1,0 +1,64 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_slovakia_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoic2tfU0siLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LnNrLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjEifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjIxMDkyNzUyNTUuMTc0NTk2NzQ3NyJ9LCJhbm9uSWQiOiI0ZTljYmQwNzc5MjJkMDU0In0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiNjE1NTM1MDM0Njc1NTk0NiJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "RabVN",
+                "campaignName": "best-fitting-vehicle | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "Xr7P9",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Vyhľadajte dostupné vozidlá alebo si rezervujte predvádzaciu jazdu",
+                    "experience": "Xr7P9",
+                    "phase3_primaryBtn": "Objaviť ponuky",
+                    "activate_phase2": true,
+                    "overwrite_content": false,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Objavte ihneď dostupné vozidlá k priamemu odberu",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": false,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Nakonfigurovať svoje vozidlo",
+                    "phase1_copy": "Nakonfigurujte si svoje vysnívané vozidlo teraz",
+                    "phase3_secondaryBtn": "Dohodnúť predvádzaciu jazdu",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "Viac informácií",
+                    "phase1_secondaryBtn": "Zistiť viac",
+                    "campaign": "RabVN",
+                    "phase2_primaryBtn": "Objaviť ponuky",
+                    "onlineShop_label": "",
+                    "vehicles_overwrite": null,
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

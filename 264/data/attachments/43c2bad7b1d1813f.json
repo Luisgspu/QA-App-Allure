@@ -1,0 +1,73 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_czechia_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiY3NfQ1oiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LmN6LyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjQifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjIwODg0NDcyODIuMTc0NTk2NzQ1NyJ9LCJhbm9uSWQiOiJhMjM4MWNiNzBkY2Q3ZDhiIn0sInBlcmZvcm1hbmNlIjp7InNka1BhcnNlVGltZSI6MX0sImRlYnVnIjp7ImV4cGxhbmF0aW9ucyI6dHJ1ZX0sImNhdGFsb2ciOnt9LCJjb25zZW50cyI6W10sImFjY291bnQiOnt9LCJfdG9vbHNFdmVudExpbmtJZCI6IjY0Nzc3OTYwMTU3NzY5MjEifQ%3D%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "dw51U",
+                "campaignName": "best-fitting-vehicle | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "Z5zX5",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Objevte dostupné vozy nebo si zarezervujte zkušební jízdu",
+                    "experience": "Z5zX5",
+                    "phase3_primaryBtn": "Vyhledat dostupné vozy",
+                    "activate_phase2": true,
+                    "overwrite_content": true,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Objevte okamžitě dostupné vozy",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": false,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Konfigurovat vůz",
+                    "vehicles_overwrite": [
+                        {
+                            "block_phase1": false,
+                            "block_phase2": false,
+                            "block_phase3": false,
+                            "baumuster": "2966",
+                            "headline": null,
+                            "pi_page": "https://www.mercedes-benz.cz/passengercars/models/suv/eqs/overview.html"
+                        }
+                    ],
+                    "phase1_copy": "Nakonfigurujte si svůj vysněný vůz nyní",
+                    "phase3_secondaryBtn": "Zarezervovat zkušební jízdu",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "Zjistit více",
+                    "phase1_secondaryBtn": "Zjistit více",
+                    "campaign": "dw51U",
+                    "phase2_primaryBtn": "Vyhledat dostupné vozy",
+                    "onlineShop_label": "",
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

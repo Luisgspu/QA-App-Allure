@@ -1,0 +1,64 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_belgium_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiZnJfRlIiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LmJlL2ZyIiwidXJsUmVmZXJyZXIiOiIiLCJjaGFubmVsIjoiV2ViIiwiYmVhY29uVmVyc2lvbiI6MTYsImNvbmZpZ1ZlcnNpb24iOiIyNDEifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjMxMTE5NDU5Ni4xNzQ1OTY3MzY5In0sImFub25JZCI6IjE0NDY4NGY1ODVlMzZhNjgifSwicGVyZm9ybWFuY2UiOnt9LCJkZWJ1ZyI6eyJleHBsYW5hdGlvbnMiOnRydWV9LCJjYXRhbG9nIjp7fSwiY29uc2VudHMiOltdLCJhY2NvdW50Ijp7fSwiX3Rvb2xzRXZlbnRMaW5rSWQiOiIxNTAwNTQ5MDIwNjIxOTA3NCJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "sWEZT",
+                "campaignName": "best-fitting-vehicle | fr | all models | home | simple-teaser and stage",
+                "campaignType": "Web",
+                "experienceId": "BEAZD",
+                "experienceName": "Target Group",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - best-fitting-vehicle-combined - home"
+                ],
+                "payload": {
+                    "phase3_copy": "Découvrez nos véhicules et réservez un essai.",
+                    "experience": "BEAZD",
+                    "phase3_primaryBtn": "Trouvez un véhicule neuf en stock",
+                    "activate_phase2": true,
+                    "overwrite_content": false,
+                    "trackingBlock": false,
+                    "activate_phase1": true,
+                    "activate_phase3": true,
+                    "phase2_copy": "Découvrez nos véhicules neufs disponibles.",
+                    "target_group": "target",
+                    "userGroup": "Test",
+                    "activate_cars": true,
+                    "block_stage": false,
+                    "activate_vans": false,
+                    "phase1_primaryBtn": "Configurez votre véhicule",
+                    "phase1_copy": "Configurez le véhicule de vos rêves.",
+                    "phase3_secondaryBtn": "Réservez un essai",
+                    "highest_affinity": {
+                        "car": "1743",
+                        "van": null
+                    },
+                    "phase2_secondaryBtn": "En savoir plus",
+                    "phase1_secondaryBtn": "En savoir plus",
+                    "campaign": "sWEZT",
+                    "phase2_primaryBtn": "Trouvez un véhicule neuf en stock",
+                    "onlineShop_label": "",
+                    "vehicles_overwrite": null,
+                    "segments": {
+                        "van": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        },
+                        "car": {
+                            "config_started": false,
+                            "config_completed": false,
+                            "testdrive_started": false
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

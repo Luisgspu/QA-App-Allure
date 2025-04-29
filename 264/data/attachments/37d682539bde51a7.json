@@ -1,0 +1,61 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_sweden_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoic3ZfU0UiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LnNlLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjUifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjExMTM1ODM1MzMuMTc0NTk2ODIzMiJ9LCJhbm9uSWQiOiJlZjcxMjM2ZjQ4Yjk3N2ZiIn0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiNDcwNzAzMjc1OTY2MDY3MiJ9",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "HFRze",
+                "campaignName": "last-configuration | private vans and all car models | home | simple-teaser and campaign-module",
+                "campaignType": "Web",
+                "experienceId": "yhYVP",
+                "experienceName": "Experience 1",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always-on - online shop and last-configuration - private vans and cars - simple-teaser and campaign-module - home"
+                ],
+                "payload": {
+                    "onlineShop_label": "Upptäck erbjudanden",
+                    "split_content_by_config_type": true,
+                    "overwrite_simple_teaser": true,
+                    "cc_primaryBtn": "Tillbaka till din konfiguration",
+                    "experience": "yhYVP",
+                    "trackingBlock": false,
+                    "cc_headline": "Hitta tillgängliga bilar i Online Store.",
+                    "cc_copy": "Kom ett steg närmare din nya Mercedes-Benz",
+                    "primaryBtn": "Tillbaka till din konfiguration",
+                    "campaign": "HFRze",
+                    "copy": "Kom ett steg närmare din Mercedes-Benz",
+                    "headline": "Din senaste konfiguration väntar på dig.",
+                    "userGroup": "Test",
+                    "lastConfigurationCanceled": {
+                        "value": "{\"vehicleBaumuster\":\"1743131\",\"vehiclecode\":\"c174\",\"lastStep\":\"paints\",\"onlinecode\":null}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "lastConfigurationDetails": {
+                        "value": "{\"vehicleBaumuster\":\"1743131\",\"vehiclecode\":\"c174\",\"lastStep\":\"summary\",\"onlinecode\":\"MYFHXYMM\"}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null
+                }
+            }
+        ]
+    }
+}
