@@ -186,17 +186,10 @@ manual_test_cases = [
     {
         "test_name": "BFV1",
         "market_code": "AT/de",
-        "model_code": "C236"
+        "model_code": "W223"
     },
     
-    {
-        "test_name": "BFV1",
-        "market_code": "AT/de",
-        "model_code": "X254"
-    },
-    
-     
-    
+   
     
     
  

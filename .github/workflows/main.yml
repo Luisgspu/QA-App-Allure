@@ -13,7 +13,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  statuses : write
+  statuses: write
 
 jobs:
   test:
@@ -70,15 +70,6 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: gh-pages
+          PUBLISH_DIR: allure-history
 
-      - name: Post the link to the report
-        if: always()
-        continue-on-error: true
-        uses: Sibz/github-status-action@v1
-        with: 
-          authToken: ${{ secrets.GITHUB_TOKEN }}
-          context: 'Test report'
-          state: 'success'
-          sha: ${{ github.event.pull_request.head.sha || github.sha }}
-          target_url: https://luisgspu.github.io/QA-App-Allure/${{ github.run_number }}
+    
