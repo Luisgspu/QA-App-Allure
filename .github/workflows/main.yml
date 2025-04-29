@@ -13,6 +13,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  statuses : write
 
 jobs:
   test:
@@ -52,6 +53,7 @@ jobs:
       - name: Allure Report Action form marketplace
         uses: simple-elf/allure-report-action@master
         if: always()
+        continue-on-error: true
         id: allure-report
         with:
           allure_results: allure-results
@@ -62,6 +64,7 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -70,6 +73,7 @@ jobs:
 
       - name: Post the link to the report
         if: always()
+        continue-on-error: true
         uses: Sibz/github-status-action@v1
         with: 
           authToken: ${{ secrets.GITHUB_TOKEN }}
