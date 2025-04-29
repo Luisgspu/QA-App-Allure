@@ -1,21 +1,26 @@
-name: Main Event Workflow — DEV Environment
+name: Allure Report Workflow
 
 on:
+  pull_request:
   push:
     branches:
       - main
-      - parallel-testing
-  workflow_dispatch:
+      - rerun
+      - feature/test-allure-report
+  workflow_dispatch:    
+  
 
-env:
-  TEST_EXECUTION_ENV: dev
+permissions:
+  contents: write
+  pull-requests: write
+  statuses : write
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,115 +35,49 @@ jobs:
           poetry install --no-root
 
       - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV
+        run: echo "PYTHONPATH=$(pwd)/App" >> $GITHUB_ENV    
 
-      # 📥 Descargar historial desde gh-pages
+      - name: Run tests scripts directly
+        run: |
+          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 5 --alluredir=allure-results
+
       - name: Get Allure history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+        if: always()
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-       # 🔍 Debug gh-pages directory
-      - name: Debug gh-pages directory
-        run: ls -la gh-pages || echo "No gh-pages directory found"    
 
-      # 🧠 Copiar historial a allure-results
-      - name: Copy Allure history
-        run: |
-          mkdir -p allure-results/history
-          if [ -d gh-pages/history ]; then
-            cp -r gh-pages/history/* allure-results/history || echo "No previous history"
-          fi
-
-      - name: Debug Allure history
-        run: ls -la allure-results/history || echo "No history found"
-
-      # ▶️ Ejecutar tests con Allure
-      - name: Run tests scripts directly
+      - name: Allure Report Action form marketplace
+        uses: simple-elf/allure-report-action@master
         if: always()
-        run: |
-          poetry run pytest QAAppAllure.py -n auto -s -v --reruns 0 --alluredir=allure-results
-
-      # 🛠️ Generar reporte con historial
-      - name: Generate Allure Report
-        if : always()
-        run: |
-          npm install -g allure-commandline --save-dev
-          allure generate allure-results -o allure-report --clean
-
-      - name: Upload Allure Report
-        if: always()
-        uses: actions/upload-artifact@v4
+        continue-on-error: true
+        id: allure-report
         with:
-          name: allure-report
-          path: allure-report
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 30
 
-      - name: Upload Allure raw results
+      - name: Deploy report to Github Pages
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
+        continue-on-error: true
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
 
-      # 🔄 Update index.html for latest report
-      - name: Update index.html for latest report
+      - name: Post the link to the report
         if: always()
-        run: |
-          echo '<!DOCTYPE html>' > index.html
-          echo '<html>' >> index.html
-          echo '  <head>' >> index.html
-          echo '    <meta http-equiv="refresh" content="0; url=${{ github.run_number }}/" />' >> index.html
-          echo '    <title>Redirecting to Latest Allure Report</title>' >> index.html
-          echo '  </head>' >> index.html
-          echo '  <body>' >> index.html
-          echo '    <p>Redirecting to the latest report...</p>' >> index.html
-          echo '    <p>If you are not redirected automatically, <a href="${{ github.run_number }}/">click here</a>.</p>' >> index.html
-          echo '  </body>' >> index.html
-          echo '</html>' >> index.html
-
-       # 🚀 Deploy Updated Index to Root of GitHub Pages
-      - name: Move index.html to temporary directory
-        if: always()
-        run: |
-          mkdir temp_deploy
-          mv index.html temp_deploy/
-
-      # Copy the new history folder to the root of gh-pages for future runs
-      - name: Copy Allure history to gh-pages
-        if: always()
-        run: |
-          cp -r allure-report/history gh-pages/history    
-
-      # Deploy Allure Report and Index to GitHub Pages
-      - name: Deploy Allure Report and Index to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-report # Deploy the entire allure-report directory
-          destination_dir: ${{ github.run_number }} # Deploy report to subdirectory
-          user_name: github-actions
-          user_email: github-actions@github.com
-          enable_jekyll: false
-          keep_files: true # Preserve existing files and subdirectories
-        
-
-      
-        # 🔗 Output the Allure Report URL
-      - name: Provide Allure Report URL
-        if: always()
-        run: |
-          echo "Allure Report URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/${{ github.run_number }}"
-
-      # 🔖 Metadata extra opcional
-      - name: Set current date as env variable
-        if: always()
-        run: |
-          echo "event_name=${GITHUB_EVENT_NAME}" >> $GITHUB_ENV
-          echo "workflow=${GITHUB_WORKFLOW}" >> $GITHUB_ENV
-          echo "actor=${GITHUB_ACTOR}" >> $GITHUB_ENV
-          echo "run_number=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
-
+        continue-on-error: true
+        uses: Sibz/github-status-action@v1
+        with: 
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: 'Test report'
+          state: 'success'
+          sha: ${{ github.event.pull_request.head.sha || github.sha }}
+          target_url: https://luisgspu.github.io/QA-App-Allure/${{ github.run_number }}
