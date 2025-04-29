@@ -181,9 +181,6 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 manual_test_cases = [
     
   
-    
-    
-    [
     {
         "test_name": "BFV1",
         "market_code": "AT/de",
@@ -514,7 +511,7 @@ manual_test_cases = [
         "market_code": "SK/sk",
         "model_code": "C174"
     }
-]
+
     
  
  
