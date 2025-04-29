@@ -61,23 +61,6 @@ jobs:
           allure_history: allure-history
           keep_reports: 30
 
-      - name: Generate index.html for historical reports
-        run: |
-          mkdir -p gh-pages
-          echo "<html><head><title>Allure Reports</title></head>" > gh-pages/index.html
-          echo "<body><h1>Allure Reports</h1>" >> gh-pages/index.html
-          echo "<table border='1' style='border-collapse: collapse; width: 100%; text-align: center;'>" >> gh-pages/index.html
-          echo "<tr><th>Run Number</th><th>Date</th><th>Time</th><th>Link</th></tr>" >> gh-pages/index.html
-          for dir in $(ls gh-pages); do
-            if [ -d "gh-pages/$dir" ]; then
-              RUN_NUMBER=$dir
-              DATE=$(date -r gh-pages/$dir "+%Y-%m-%d")
-              TIME=$(date -r gh-pages/$dir "+%H:%M:%S")
-              echo "<tr><td>$RUN_NUMBER</td><td>$DATE</td><td>$TIME</td><td><a href='$dir/index.html'>View Report</a></td></tr>" >> gh-pages/index.html
-            fi
-          done
-          echo "</table></body></html>" >> gh-pages/index.html
-
       - name: Deploy report to Github Pages
         if: always()
         continue-on-error: true
@@ -85,6 +68,4 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: gh-pages
-
-            
+          PUBLISH_DIR: allure-history
