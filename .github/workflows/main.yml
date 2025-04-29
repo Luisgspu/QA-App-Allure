@@ -60,6 +60,26 @@ jobs:
           allure_history: allure-history
           keep_reports: 30
 
+      - name: Generate enhanced index.html for historical reports
+        if: always()
+        run: |
+          echo "<html><head><title>Allure Reports</title></head>" > gh-pages/index.html
+          echo "<body><h1>Allure Reports</h1>" >> gh-pages/index.html
+          echo "<table border='1' style='border-collapse: collapse; width: 100%;'>" >> gh-pages/index.html
+          echo "<tr><th>Run Number</th><th>Date</th><th>Time</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Link</th></tr>" >> gh-pages/index.html
+          for dir in $(ls gh-pages); do
+            if [ -d "gh-pages/$dir" ] && [ "$dir" != "allure-history" ]; then
+              RUN_NUMBER=$dir
+              DATE=$(date -r gh-pages/$dir "+%Y-%m-%d")
+              TIME=$(date -r gh-pages/$dir "+%H:%M:%S")
+              PASSED=$(grep -oP '(?<=<passed>)[0-9]+(?=</passed>)' gh-pages/$dir/widgets/summary.json || echo "N/A")
+              FAILED=$(grep -oP '(?<=<failed>)[0-9]+(?=</failed>)' gh-pages/$dir/widgets/summary.json || echo "N/A")
+              SKIPPED=$(grep -oP '(?<=<skipped>)[0-9]+(?=</skipped>)' gh-pages/$dir/widgets/summary.json || echo "N/A")
+              echo "<tr><td>$RUN_NUMBER</td><td>$DATE</td><td>$TIME</td><td>$PASSED</td><td>$FAILED</td><td>$SKIPPED</td><td><a href='$dir/index.html'>View Report</a></td></tr>" >> gh-pages/index.html
+            fi
+          done
+          echo "</table></body></html>" >> gh-pages/index.html
+
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v2
