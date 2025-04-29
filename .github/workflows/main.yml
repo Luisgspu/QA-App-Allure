@@ -72,4 +72,12 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
 
-    
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with: 
+            authToken: ${{ secrets.GITHUB_TOKEN }}
+            context: 'Test report'
+            state: 'success'
+            sha: ${{ github.sha }}
+            target_url: https://luisgspu.github.io/QA-App-Allure/${{ github.run_number }}/index.html
