@@ -1,11 +1,13 @@
 name: Allure Report Workflow
 
 on:
+  pull_request:
   push:
     branches:
       - main
       - rerun
-  pull_request:
+  workflow_dispatch:    
+  
 
 permissions:
   contents: write
@@ -47,7 +49,7 @@ jobs:
         uses: mgrybyk-org/allure-report-branch-action@v1
         id: allure
         with:
-          report_id: '${{ github.ref_name }}-${{ github.run_id }}'
+          report_id: '${{ github.run_id }}'
           gh_pages: 'gh-pages-dir'
           report_dir: 'allure-results'
 
