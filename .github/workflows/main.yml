@@ -41,12 +41,15 @@ jobs:
 
       - name: Checkout gh-pages
         uses: actions/checkout@v3
+        if: always()
         with:
           ref: gh-pages
           path: gh-pages-dir
 
       - name: Allure Report Action
         uses: mgrybyk-org/allure-report-branch-action@v1
+        if: always()
+        continue-on-error: true 
         id: allure
         with:
           report_id: '${{ github.run_id }}'
@@ -55,13 +58,16 @@ jobs:
 
       - name: Git Commit and Push Action
         uses: mgrybyk-org/git-commit-pull-push-action@v1
+        if: always()
         with:
           repository: gh-pages-dir
           branch: gh-pages
+          pull_args: --rebase -X ours
 
-      # Comentar en el Pull Request solo si el evento es un pull_request
+      # After publishing to gh-pages
       - name: Comment PR with Allure Report link
-        if: ${{ github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        continue-on-error: true
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
