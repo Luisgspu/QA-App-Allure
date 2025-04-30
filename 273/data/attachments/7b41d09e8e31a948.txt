@@ -1,0 +1,5 @@
+ERROR    root:test_LastSeenPDP.py:84 ❌ Error during Last Seen PDP test: HTTPConnectionPool(host='localhost', port=49955): Read timed out. (read timeout=120)
+ERROR    root:VerifyPersonalizationAndCapture.py:111 ❌ Image not found in the specified selector. Error: Message: 
+
+ERROR    root:VerifyPersonalizationAndCapture.py:18 ❌ Error attaching screenshot to Allure: [Errno 2] No such file or directory: '/home/runner/work/QA-App-Allure/QA-App-Allure/Tests/Last Seen PDP_attempt_2.png'
+ERROR    root:QAAppAllure.py:174 ❌ Test 'Last Seen PDP' failed.
