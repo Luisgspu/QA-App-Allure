@@ -60,39 +60,7 @@ jobs:
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
-
-      - name: Copy latest report to gh-pages
-        if: always()
-        run: |
-          REPORTS_DIR="gh-pages"
-          NEW_REPORT_DIR="$REPORTS_DIR/${{ github.run_number }}"
-          mkdir -p $NEW_REPORT_DIR
-          cp -r allure-report/* $NEW_REPORT_DIR/
-
-      - name: Update index.html with all reports
-        if: always()
-        run: |
-          REPORTS_DIR="gh-pages"
-          INDEX_FILE="$REPORTS_DIR/index.html"
-          mkdir -p $REPORTS_DIR
-          echo "<html><body><h1>Allure Reports</h1><table border='1'>" > $INDEX_FILE
-          echo "<tr><th>Report Name</th><th>Date</th><th>Status</th></tr>" >> $INDEX_FILE
-          for dir in $(ls -d $REPORTS_DIR/*/ 2>/dev/null); do
-            REPORT_NAME=$(basename $dir)
-            REPORT_DATE=$(date -r $dir +"%Y-%m-%d %H:%M:%S")
-            STATUS_FILE="$dir/widgets/summary.json"
-            if [ -f "$STATUS_FILE" ]; then
-              PASSED=$(jq '.statistic.passed' $STATUS_FILE)
-              FAILED=$(jq '.statistic.failed' $STATUS_FILE)
-              SKIPPED=$(jq '.statistic.skipped' $STATUS_FILE)
-              STATUS="PASSED: $PASSED, FAILED: $FAILED, SKIPPED: $SKIPPED"
-            else
-              STATUS="Unknown"
-            fi
-            echo "<tr><td><a href='$REPORT_NAME/index.html'>$REPORT_NAME</a></td><td>$REPORT_DATE</td><td>$STATUS</td></tr>" >> $INDEX_FILE
-          done
-          echo "</table></body></html>" >> $INDEX_FILE
-  
+          
 
       - name: Deploy report to Github Pages
         if: always()
@@ -101,7 +69,7 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: gh-pages
+          PUBLISH_DIR: allure-history
 
       - name: Post the link to the report
         if: always()

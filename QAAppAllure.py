@@ -182,15 +182,6 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 # Manually defined test cases
 manual_test_cases = [
     
-  
-     {
-        "test_name": "Last Seen PDP",
-        "market_code": "AT/de",
-        
-    },
-   
-    
-    
     {
         "test_name": "BFV1",
         "market_code": "AT/de",
