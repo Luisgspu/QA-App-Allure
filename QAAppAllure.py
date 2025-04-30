@@ -183,15 +183,8 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 manual_test_cases = [
     
     {
-        "test_name": "BFV1",
-        "market_code": "AT/de",
-        "model_code": "W465"
-    },
-    
-    {
-        "test_name": "BFV1",
-        "market_code": "AT/de",
-        "model_code": "C236"
+        "test_name": "Last Seen SRP",
+        "market_code": "IT/it",
     },
     
     
