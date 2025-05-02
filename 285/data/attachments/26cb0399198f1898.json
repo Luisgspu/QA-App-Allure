@@ -1,0 +1,49 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_hungary_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiaHVfSFUiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56Lmh1LyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNTkifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjE4MTYwNTAwODEuMTc0NjE4MTYyMiJ9LCJhbm9uSWQiOiJhODJiYTQ5YmFmYmU0NjNkIn0sInBlcmZvcm1hbmNlIjp7InNka1BhcnNlVGltZSI6MX0sImRlYnVnIjp7ImV4cGxhbmF0aW9ucyI6dHJ1ZX0sImNhdGFsb2ciOnt9LCJjb25zZW50cyI6W10sImFjY291bnQiOnt9LCJfdG9vbHNFdmVudExpbmtJZCI6IjE5NzE3MjA5NDg1OTg5NjI5In0%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "gDaf9",
+                "campaignName": "dcp-last-seen-pdp-srp | all available models | home | simple-teaser",
+                "campaignType": "Web",
+                "experienceId": "utEnD",
+                "experienceName": "Experience 1",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always on - dcp-last-seen-pdp-srp - simple-teaser and campaign-module"
+                ],
+                "payload": {
+                    "apikey": "b448a559-eb9e-4396-812f-25b45f84c63a",
+                    "pdp_headline": "Kérjen ajánlatot kiválasztott autójára!",
+                    "srp_cta_label": "Ajánlatok megtekintése",
+                    "experience": "utEnD",
+                    "trackingBlock": false,
+                    "srp_headline": "Nem találta meg álmai Mercedes-Benz modelltjét?",
+                    "pdp_subline": "Álomautója Önre vár!",
+                    "campaign": "gDaf9",
+                    "srp_subline": "Böngésszen készletről elérhető autóink között!",
+                    "pdp_cta_label": "Vissza a találati oldalra",
+                    "userGroup": "Test",
+                    "lastSRPModelFilter": {
+                        "value": "{\"dcp_last_modelfilter\":\"glb-class\",\"dcp_last_bodytypefilter\":\"suv-offroader\",\"dcp_last_search_url\":\"https://www.mercedes-benz.hu/passengercars/buy/new-car/search-results.html/vehicleCategory-new-passenger-cars/brand-Mercedes-Benz/modelIdentifier-GLB?emhsortType=price-asc&emhbodyType=SUV_OFFROADER\",\"timestamp\":1746181631353,\"expiration\":120}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null,
+                    "lastSeenPDP": null
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_luxembourg_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiZnJfTFUiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56Lmx1L2ZyIiwidXJsUmVmZXJyZXIiOiIiLCJjaGFubmVsIjoiV2ViIiwiYmVhY29uVmVyc2lvbiI6MTYsImNvbmZpZ1ZlcnNpb24iOiI1NCJ9LCJmbGFncyI6eyJwYWdlVmlldyI6dHJ1ZX0sInVzZXIiOnsiYXR0cmlidXRlcyI6eyJnYUNsaWVudElEIjoiNzY2ODMyODI2LjE3NDYxODMxMzgifSwiYW5vbklkIjoiMzE0YzdkOTVlYTRiMzdhNyJ9LCJwZXJmb3JtYW5jZSI6e30sImRlYnVnIjp7ImV4cGxhbmF0aW9ucyI6dHJ1ZX0sImNhdGFsb2ciOnt9LCJjb25zZW50cyI6W10sImFjY291bnQiOnt9LCJfdG9vbHNFdmVudExpbmtJZCI6IjE5NTUyOTk0MzEwNTQwMDYyIn0%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "iCQtk",
+                "campaignName": "dcp-last-seen-pdp-srp | all available models | home | simple-teaser",
+                "campaignType": "Web",
+                "experienceId": "m36OO",
+                "experienceName": "FR",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always on - dcp-last-seen-pdp-srp - simple-teaser and campaign-module"
+                ],
+                "payload": {
+                    "apikey": "b448a559-eb9e-4396-812f-25b45f84c63a",
+                    "pdp_headline": "Retrouvez votre Mercedes-Benz en quelques clics.",
+                    "srp_cta_label": "Trouvez un véhicule neuf en stock",
+                    "experience": "m36OO",
+                    "trackingBlock": false,
+                    "srp_headline": "Découvrez les véhicules disponibles dès maintenant.",
+                    "pdp_subline": "Votre véhicule vous attend.",
+                    "campaign": "iCQtk",
+                    "srp_subline": "Êtes-vous toujours intéressé par ce modèle ? ",
+                    "pdp_cta_label": "Réservez en ligne",
+                    "userGroup": "Test",
+                    "lastSRPModelFilter": {
+                        "value": "{\"dcp_last_modelfilter\":\"eqa-class\",\"dcp_last_bodytypefilter\":\"suv-offroader\",\"dcp_last_search_url\":\"https://www.mercedes-benz.lu/de/passengercars/buy/new-car/search-results.html/vehicleCategory-new-passenger-cars/brand-Mercedes-Benz/modelIdentifier-EQA?emhsortType=price-asc&emhbodyType=SUV_OFFROADER&emhfuelType=ELECTRIC\",\"timestamp\":1746183141013,\"expiration\":120}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null,
+                    "lastSeenPDP": null
+                }
+            }
+        ]
+    }
+}

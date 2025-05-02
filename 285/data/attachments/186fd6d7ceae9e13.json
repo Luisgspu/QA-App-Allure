@@ -1,0 +1,49 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_netherlands_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoibmxfTkwiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56Lm5sLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNTYifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjE0ODYzNjM3Ni4xNzQ2MTg1MTM2In0sImFub25JZCI6ImUyZTg3ZGRkYzU0NDk5NmEifSwicGVyZm9ybWFuY2UiOnt9LCJkZWJ1ZyI6eyJleHBsYW5hdGlvbnMiOnRydWV9LCJjYXRhbG9nIjp7fSwiY29uc2VudHMiOltdLCJhY2NvdW50Ijp7fSwiX3Rvb2xzRXZlbnRMaW5rSWQiOiI4NzIwMjk5OTk5Nzc3NDY4In0%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "6OC5O",
+                "campaignName": "dcp-last-seen-pdp-srp | all available models | home | simple-teaser",
+                "campaignType": "Web",
+                "experienceId": "94y1C",
+                "experienceName": "Experience 1",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always on - dcp-last-seen-pdp-srp - simple-teaser and campaign-module"
+                ],
+                "payload": {
+                    "apikey": "b448a559-eb9e-4396-812f-25b45f84c63a",
+                    "pdp_headline": "Uw MODEL wacht op u",
+                    "srp_cta_label": "Ontdek de aanbiedingen",
+                    "experience": "94y1C",
+                    "trackingBlock": false,
+                    "srp_headline": "Ontdek onze direct beschikbare auto's.",
+                    "pdp_subline": "Vind uw gewenste auto en vraag eenvoudig een offerte aan.",
+                    "campaign": "6OC5O",
+                    "srp_subline": "Jouw Mercedes-Benz nog niet gevonden?",
+                    "pdp_cta_label": "Reserveer online",
+                    "userGroup": "Test",
+                    "lastSRPModelFilter": {
+                        "value": "{\"dcp_last_modelfilter\":\"b-class\",\"dcp_last_bodytypefilter\":\"sports-tourer\",\"dcp_last_search_url\":\"https://www.mercedes-benz.nl/passengercars/buy/new-car/search-results.html/vehicleCategory-new-passenger-cars/brand-Mercedes-Benz/modelIdentifier-B_CLASS?emhsortType=price-asc&emhbodyType=SPORTS_TOURER\",\"timestamp\":1746185151189,\"expiration\":120}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null,
+                    "lastSeenPDP": null
+                }
+            }
+        ]
+    }
+}

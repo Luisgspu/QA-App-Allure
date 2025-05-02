@@ -1,0 +1,49 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_france_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiZnJfTFUiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LmZyLyIsInVybFJlZmVycmVyIjoiIiwiY2hhbm5lbCI6IldlYiIsImJlYWNvblZlcnNpb24iOjE2LCJjb25maWdWZXJzaW9uIjoiNjIifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjEzNTYwNTUwNTIuMTc0NjE4MDk4MiJ9LCJhbm9uSWQiOiI0ZGRmZGEzZmFmY2ZmOWJlIn0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiNDYxNzA5MjQxNTY1MTkxMzMifQ%3D%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "1A28Q",
+                "campaignName": "dcp-last-seen-pdp-srp | all available models | home | simple-teaser and campaign-module",
+                "campaignType": "Web",
+                "experienceId": "wcSR0",
+                "experienceName": "Experience 1",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always on - dcp-last-seen-pdp-srp - simple-teaser and campaign-module"
+                ],
+                "payload": {
+                    "apikey": "b448a559-eb9e-4396-812f-25b45f84c63a",
+                    "pdp_headline": "Votre véhicule vous attend.",
+                    "srp_cta_label": "Trouvez un véhicule neuf en stock",
+                    "experience": "wcSR0",
+                    "trackingBlock": false,
+                    "srp_headline": "Êtes-vous toujours intéressé par ce modèle ? ",
+                    "pdp_subline": "Retrouvez votre véhicule en quelques clics.",
+                    "campaign": "1A28Q",
+                    "srp_subline": "Découvrez les véhicules disponibles dès maintenant.",
+                    "pdp_cta_label": "Trouvez un véhicule neuf en stock",
+                    "userGroup": "Test",
+                    "lastSRPModelFilter": {
+                        "value": "{\"dcp_last_modelfilter\":\"eqs-class\",\"dcp_last_bodytypefilter\":\"suv\",\"dcp_last_search_url\":\"https://www.mercedes-benz.fr/passengercars/buy/new-car/search-results.html/vehicleCategory-new-passenger-cars/brand-Mercedes-Benz/modelIdentifier-EQS_CLASS?emhsortType=price-asc&emhbodyType=SUV&emhfuelType=ELECTRIC\",\"timestamp\":1746180996708,\"expiration\":120}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null,
+                    "lastSeenPDP": null
+                }
+            }
+        ]
+    }
+}

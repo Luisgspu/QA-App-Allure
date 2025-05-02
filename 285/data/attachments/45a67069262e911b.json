@@ -1,0 +1,49 @@
+{
+    "url": "https://daimleragemea.germany-2.evergage.com/api2/event/mb_belgium_prod?event=eyJhY3Rpb24iOiJIb21lIFBhZ2UiLCJpdGVtQWN0aW9uIjpudWxsLCJzb3VyY2UiOnsicGFnZVR5cGUiOiJob21lIiwibG9jYWxlIjoiZnJfRlIiLCJjb250ZW50Wm9uZXMiOltdLCJ1cmwiOiJodHRwczovL3d3dy5tZXJjZWRlcy1iZW56LmJlL2ZyIiwidXJsUmVmZXJyZXIiOiIiLCJjaGFubmVsIjoiV2ViIiwiYmVhY29uVmVyc2lvbiI6MTYsImNvbmZpZ1ZlcnNpb24iOiIyNDEifSwiZmxhZ3MiOnsicGFnZVZpZXciOnRydWV9LCJ1c2VyIjp7ImF0dHJpYnV0ZXMiOnsiZ2FDbGllbnRJRCI6IjE4MTcxMDIyNTQuMTc0NjE3NjU4NCJ9LCJhbm9uSWQiOiIzYTNiODUwZGYwY2RiZmVhIn0sInBlcmZvcm1hbmNlIjp7fSwiZGVidWciOnsiZXhwbGFuYXRpb25zIjp0cnVlfSwiY2F0YWxvZyI6e30sImNvbnNlbnRzIjpbXSwiYWNjb3VudCI6e30sIl90b29sc0V2ZW50TGlua0lkIjoiMzUyNDkzODYxODU2ODI2ODUifQ%3D%3D",
+    "status": 200,
+    "body": {
+        "campaignResponses": [
+            {
+                "type": "ng",
+                "campaignId": "ofm2v",
+                "campaignName": "dcp-last-seen-pdp-srp | all available models | home | simple-teaser",
+                "campaignType": "Web",
+                "experienceId": "fxcoE",
+                "experienceName": "fr",
+                "experienceSourceCode": "",
+                "state": "Published",
+                "campaignJavascriptContent": null,
+                "userGroup": "Default",
+                "templateNames": [
+                    "Always on - dcp-last-seen-pdp-srp - simple-teaser and campaign-module"
+                ],
+                "payload": {
+                    "apikey": "b448a559-eb9e-4396-812f-25b45f84c63a",
+                    "pdp_headline": "Retrouvez votre Mercedes-Benz en quelques clics.",
+                    "srp_cta_label": "Trouvez un véhicule neuf en stock",
+                    "experience": "fxcoE",
+                    "trackingBlock": false,
+                    "srp_headline": "Découvrez les véhicules disponibles dès maintenant.",
+                    "pdp_subline": "Votre véhicule vous attend.",
+                    "campaign": "ofm2v",
+                    "srp_subline": "Êtes-vous toujours intéressé par ce modèle ? ",
+                    "pdp_cta_label": "Réservez en ligne",
+                    "userGroup": "Test",
+                    "lastSRPModelFilter": {
+                        "value": "{\"dcp_last_bodytypefilter\":\"suv\",\"dcp_last_search_url\":\"https://www.mercedes-benz.be/fr/passengercars/buy/new-car/search-results.html/vehicleCategory-new-passenger-cars/brand-Mercedes-Benz?emhsortType=price-asc&emhbodyType=SUV&emhfuelType=ELECTRIC\",\"timestamp\":1746176598016,\"expiration\":120}",
+                        "metadata": {
+                            "lastUpdated": null,
+                            "provider": null,
+                            "origin": "Web",
+                            "gearId": null,
+                            "lastVerified": null,
+                            "classification": null
+                        }
+                    },
+                    "currentProduct": null,
+                    "lastSeenPDP": null
+                }
+            }
+        ]
+    }
+}
