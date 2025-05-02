@@ -182,7 +182,7 @@ def run_test(driver, test_name, market_code, model_code, model_name, body_type, 
 # Manually defined test cases
 manual_test_cases = [
     
-    [
+    
     {
         "test_name": "Last Seen SRP",
         "market_code": "IT/it"
@@ -269,15 +269,7 @@ manual_test_cases = [
  
  
     
-  
-   
 
-
-
-    
-
-    
-]
 
 # Fetch dynamic test cases for manual model codes
 dynamic_test_cases = []
